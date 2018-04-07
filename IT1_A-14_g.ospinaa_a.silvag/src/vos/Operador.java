@@ -25,6 +25,9 @@ public class Operador {
 	@JsonProperty(value="tipo")
 	private String tipo;
 	
+	@JsonProperty(value="ocupacion")
+	private Integer ocupacion;
+	
 ////////////////////////////////////////////
 ////////////////CONSTRUCTOR/////////////////
 ////////////////////////////////////////////
@@ -36,13 +39,14 @@ public class Operador {
  * @param correo
  * @param nombre
  */
-public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty(value="cupoTotal") Integer cupoTotal, @JsonProperty(value="correo") String correo, @JsonProperty(value="nombre") String nombre, @JsonProperty(value="tipo") String tipo) {
+public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty(value="cupoTotal") Integer cupoTotal, @JsonProperty(value="correo") String correo, @JsonProperty(value="nombre") String nombre, @JsonProperty(value="tipo") String tipo, @JsonProperty(value="ocupacion") Integer ocupacion) {
 	super();
 	this.idOperador = idOperador;
 	this.cupoTotal = cupoTotal;
 	this.correo = correo;
 	this.nombre = nombre;
 	this.tipo = tipo;
+	this.ocupacion = ocupacion;
 }
 
 
@@ -50,6 +54,16 @@ public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty
 ////////////GETTERS AND SETTERS/////////////
 ////////////////////////////////////////////
 
+
+
+	public Integer getOcupacion() {
+		return ocupacion;
+	}
+
+
+	public void setOcupacion(Integer ocupacion) {
+		this.ocupacion = ocupacion;
+	}
 
 
 	/**

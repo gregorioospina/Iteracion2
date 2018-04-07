@@ -28,10 +28,10 @@ public class PersonaNatural extends Operador {
 	 */
 	public PersonaNatural(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,
+			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,@JsonProperty(value="ocupacion")Integer ocupacion,
 			@JsonProperty(value = "costoServicios") Double costoServicios,
 			@JsonProperty(value = "banhoCompartido") Boolean banhoCompartido) {
-		super(idOperador, cupoTotal, correo, nombre,tipo);
+		super(idOperador, cupoTotal, correo, nombre,tipo,ocupacion);
 		this.costoServicios = costoServicios;
 		this.banhoCompartido = banhoCompartido;
 	}
