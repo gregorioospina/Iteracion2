@@ -1,0 +1,529 @@
+{
+	"info": {
+		"_postman_id": "e4dbfd34-9faf-44cc-b846-1eb7eb828c7b",
+		"name": "ALOHAANDES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "getAll  exitoso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getbyId del codigo 201632412, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/201632412",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"201632412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post del codigo 201632412, exitoso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nombre\": \"GREGORIO OSPINA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/201632412",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"201632412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del Post del codigo 201632412, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nombre\": \"GREGORIO OSPINA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/201632412",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"201632412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT del codigo 123456, exitoso",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del PUT del codigo 123456, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE del codigo 123456, exitoso",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del DELETE del codigo 123456, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/AlohAndes/rest/usuarios/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"AlohAndes",
+								"rest",
+								"usuarios",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservas",
+			"description": "",
+			"item": [
+				{
+					"name": "GetAll Exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById del id 134, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas/134",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas",
+								"134"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByUsuarioOperador de los ids 201632454, 34, Exitosa",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codigoUniandes\" : 123456,\n        \"nombre\": \"GREGORIO OSPINA ARANGO PRUEBA\",\n        \"correo\": \"jd.vega10@uniandes.edu.com\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas/201632454/34",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas",
+								"201632454",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post de eld id 736, exitoso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"idReserva\": 736,\n        \"idUsuario\": 201632454,\n        \"idOperador\": 34,\n        \"cancelado\": false,\n        \"precio\": 1337,\n        \"idHabitacion\": 736,\n        \"fechaInicio\": \"2014-01-16\",\n        \"fechaFinal\": \"2999-01-01\",\n        \"horaCreacion\": \"0031-01-20\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas/736",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas",
+								"736"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del Post de eld id 736, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"idReserva\": 736,\n        \"idUsuario\": 201632454,\n        \"idOperador\": 34,\n        \"cancelado\": false,\n        \"precio\": 1337,\n        \"idHabitacion\": 736,\n        \"fechaInicio\": \"2014-01-16\",\n        \"fechaFinal\": \"2999-01-01\",\n        \"horaCreacion\": \"0031-01-20\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas/736",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas",
+								"736"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT de eld id 9000736, exitoso",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"idReserva\": 9000736,\n        \"idUsuario\": 201632454,\n        \"idOperador\": 34,\n        \"cancelado\": false,\n        \"precio\": 1337,\n        \"idHabitacion\": 736,\n        \"fechaInicio\": \"2014-01-16\",\n        \"fechaFinal\": \"2999-01-01\",\n        \"horaCreacion\": \"0031-01-20\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del PUT del id 9000736, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n        \"idReserva\": 9000736,\n        \"idUsuario\": 201632454,\n        \"idOperador\": 34,\n        \"cancelado\": false,\n        \"precio\": 1337,\n        \"idHabitacion\": 736,\n        \"fechaInicio\": \"2014-01-16\",\n        \"fechaFinal\": \"2999-01-01\",\n        \"horaCreacion\": \"0031-01-20\"\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/reservas/9000736",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"reservas",
+								"9000736"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete del codigo 20163241, exitoso",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigoUniandes\": 201632412,\n    \"nombre\": \"GREIO\",\n    \"correo\": \"jd.vega10@uniandes.edu.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/usuarios/201632412",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"usuarios",
+								"201632412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET del Delete del codigo 20163241, exitoso",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigoUniandes\": 201632412,\n    \"nombre\": \"GREIO\",\n    \"correo\": \"jd.vega10@uniandes.edu.com\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/usuarios/201632412",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"IT1_A-14_g.ospinaa_a.silvag",
+								"rest",
+								"usuarios",
+								"201632412"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

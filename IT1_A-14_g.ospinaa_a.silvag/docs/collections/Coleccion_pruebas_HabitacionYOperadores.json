@@ -1,0 +1,1194 @@
+{
+	"variables": [],
+	"info": {
+		"name": "IT1_A-14_g.ospinaa_a.silvag",
+		"_postman_id": "249bff48-8547-accf-601b-f96d09fb8534",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Operadores",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOSTAL",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOSTAL",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/APARTAMENTO",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/APARTAMENTO",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDAUNI",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDAUNI",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDA",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDA",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/PersonaNatural",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/PersonaNatural",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/4",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/15",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/15",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/33",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/33",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/50",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/50",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/70",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/70",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/80",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/80",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/91",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/91",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/91",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/91",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1000",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1000",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/115",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/115",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/42",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/42",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/11",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/11",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/71",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/71",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/11",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/11",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/42",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/42",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/115",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/115",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1000",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1000",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 1000,\n        \"cupoTotal\": 199,\n        \"correo\": \"correo3@mail.com\",\n        \"nombre\": \"nombre3\",\n        \"tipo\": \"HOTEL\",\n        \"restaurante\": true,\n        \"piscina\": false,\n        \"parqueadero\": true,\n        \"wifi\": false,\n        \"tvCable\": true,\n        \"numRegistro\": 9876567,\n        \"direccion\": \"Cll3\",\n        \"numRegisto\": 9876567\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/Hotel",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/Hotel",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 1000,\n        \"cupoTotal\": 199,\n        \"correo\": \"correo3@mail.com\",\n        \"nombre\": \"nombre3\",\n        \"tipo\": \"HOTEL\",\n        \"restaurante\": true,\n        \"piscina\": false,\n        \"parqueadero\": true,\n        \"wifi\": false,\n        \"tvCable\": true,\n        \"numRegistro\": 9876567,\n        \"direccion\": \"Cll3\",\n        \"numRegisto\": 9876567\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/91",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/91",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/91",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/91",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/92",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/92",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/80",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/80",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/70",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/70",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/50",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/50",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/33",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/33",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/15",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/15",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/4",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/PersonaNatural",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/PersonaNatural",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDA",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDA",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDAUNI",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/VIVIENDAUNI",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/APARTAMENTO",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/APARTAMENTO",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/422",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/id/422",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 422,\n        \"cupoTotal\": 69,\n        \"correo\": \"apto1@hotmail.com\",\n        \"nombre\": \"apartamento1\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": true,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 56000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/HOTEL",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 3,\n        \"cupoTotal\": 198,\n        \"correo\": \"correo3@mail.com\",\n        \"nombre\": \"nombre3\",\n        \"tipo\": \"HOTEL\",\n        \"restaurante\": true,\n        \"piscina\": false,\n        \"parqueadero\": true,\n        \"wifi\": false,\n        \"tvCable\": true,\n        \"numRegistro\": 9876567,\n        \"direccion\": \"Cll3\",\n        \"numRegisto\": 9876567\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/hostal",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/hostal",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 3111,\n        \"cupoTotal\": 49,\n        \"correo\": \"correo2@yahoo.com\",\n        \"nombre\": \"HOSTAL2\",\n        \"tipo\": \"HOSTAL\",\n        \"restaurante\": true,\n        \"piscina\": false,\n        \"parqueadero\": true,\n        \"wifi\": false,\n        \"tvCable\": true,\n        \"horaApertura\": 7,\n        \"horaCierre\": 24,\n        \"numRegistro\": 3434,\n        \"direccion\": \"Cll12\",\n        \"numRegisto\": 3434\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/apartamento",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/apartamento",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4333,\n        \"cupoTotal\": 5,\n        \"correo\": \"apto2@yahoo.com\",\n        \"nombre\": \"apartamento2\",\n        \"tipo\": \"APARTAMENTO\",\n        \"amoblado\": true,\n        \"servicioPublico\": false,\n        \"administracion\": true,\n        \"tv\": true,\n        \"internet\": true,\n        \"precio\": 57000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/vivienda",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/vivienda",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idOperador\": 1222,\n        \"cupoTotal\": 5,\n        \"correo\": \"viv2@yahoo.com\",\n        \"nombre\": \"vivienda2\",\n        \"tipo\": \"VIVIENDA\",\n        \"numeroDeHabitaciones\": 3,\n        \"ubicacion\": \"Aguas2\",\n        \"menaje\": true,\n        \"costo\": 56,\n        \"seguro\": \"Colpatria199\",\n        \"diasAlquilada\": 1\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/viviendauni",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/operadores/viviendauni",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 91,\n        \"cupoTotal\": 1001,\n        \"correo\": \"cityu@uniandes.edu.co\",\n        \"nombre\": \"CityU\",\n        \"tipo\": \"VIVIENDAUNI\",\n        \"salasDeEstudioCosto\": 2000,\n        \"restauranteCosto\": 10000,\n        \"ubicacion\": \"UNIVERSIDAD DE LOS ANDES\",\n        \"id\": null,\n        \"capacidad\": 1000,\n        \"gimnasioCosto\": 10000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Habitaciones",
+			"description": "",
+			"item": [
+				{
+					"name": "getAll exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 91,\n        \"cupoTotal\": 1001,\n        \"correo\": \"cityu@uniandes.edu.co\",\n        \"nombre\": \"CityU\",\n        \"tipo\": \"VIVIENDAUNI\",\n        \"salasDeEstudioCosto\": 2000,\n        \"restauranteCosto\": 10000,\n        \"ubicacion\": \"UNIVERSIDAD DE LOS ANDES\",\n        \"id\": null,\n        \"capacidad\": 1000,\n        \"gimnasioCosto\": 10000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getDisponibles",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/disponibles",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 91,\n        \"cupoTotal\": 1001,\n        \"correo\": \"cityu@uniandes.edu.co\",\n        \"nombre\": \"CityU\",\n        \"tipo\": \"VIVIENDAUNI\",\n        \"salasDeEstudioCosto\": 2000,\n        \"restauranteCosto\": 10000,\n        \"ubicacion\": \"UNIVERSIDAD DE LOS ANDES\",\n        \"id\": null,\n        \"capacidad\": 1000,\n        \"gimnasioCosto\": 10000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getById con el id  165, exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/165",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 91,\n        \"cupoTotal\": 1001,\n        \"correo\": \"cityu@uniandes.edu.co\",\n        \"nombre\": \"CityU\",\n        \"tipo\": \"VIVIENDAUNI\",\n        \"salasDeEstudioCosto\": 2000,\n        \"restauranteCosto\": 10000,\n        \"ubicacion\": \"UNIVERSIDAD DE LOS ANDES\",\n        \"id\": null,\n        \"capacidad\": 1000,\n        \"gimnasioCosto\": 10000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getDisponiblesByOperador con el op_id = 4. Exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/disponibles/4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 91,\n        \"cupoTotal\": 1001,\n        \"correo\": \"cityu@uniandes.edu.co\",\n        \"nombre\": \"CityU\",\n        \"tipo\": \"VIVIENDAUNI\",\n        \"salasDeEstudioCosto\": 2000,\n        \"restauranteCosto\": 10000,\n        \"ubicacion\": \"UNIVERSIDAD DE LOS ANDES\",\n        \"id\": null,\n        \"capacidad\": 1000,\n        \"gimnasioCosto\": 10000\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT con id_habitacion 4444, existoso.",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4,\n        \"idHabitacion\": 44444,\n        \"tipo\": \"nueva\",\n        \"cupo\": 4,\n        \"precio\": 251000,\n        \"ubicacion\": \"prueba\",\n        \"numero\": 2,\n        \"menaje\": true,\n        \"ocupado\": false\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET del PUT anterior, exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/44444",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4,\n        \"idHabitacion\": 44444,\n        \"tipo\": \"nueva\",\n        \"cupo\": 4,\n        \"precio\": 251000,\n        \"ubicacion\": \"prueba\",\n        \"numero\": 2,\n        \"menaje\": true,\n        \"ocupado\": false\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST de id 44444, exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/44444",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4,\n        \"idHabitacion\": 44444,\n        \"tipo\": \"UPDATE\",\n        \"cupo\": 4,\n        \"precio\": 1337,\n        \"ubicacion\": \"POST PRUEBA\",\n        \"numero\": 2,\n        \"menaje\": true,\n        \"ocupado\": false\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET del POST de id 44444, exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/44444",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4,\n        \"idHabitacion\": 44444,\n        \"tipo\": \"UPDATE\",\n        \"cupo\": 4,\n        \"precio\": 1337,\n        \"ubicacion\": \"POST PRUEBA\",\n        \"numero\": 2,\n        \"menaje\": true,\n        \"ocupado\": false\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE de id 164, exitoso",
+					"request": {
+						"url": "http://localhost:8080/IT1_A-14_g.ospinaa_a.silvag/rest/habitaciones/164",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"idOperador\": 4,\n        \"idHabitacion\": 44444,\n        \"tipo\": \"UPDATE\",\n        \"cupo\": 4,\n        \"precio\": 1337,\n        \"ubicacion\": \"POST PRUEBA\",\n        \"numero\": 2,\n        \"menaje\": true,\n        \"ocupado\": false\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
