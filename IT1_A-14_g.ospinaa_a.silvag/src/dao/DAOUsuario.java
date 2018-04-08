@@ -114,7 +114,7 @@ public class DAOUsuario {
 	 * @throws Exception Si se genera un error dentro del metodo.
 	 */
 	public void addUsuario(Usuario usuario) throws SQLException, Exception {
-		String sq1 = String.format("INSERT INTO %1$s.USUARIOS (CODIGO, NOMBRE, CORREO) VALUES (%2$d, %3$s, %4$s)", USUARIO, usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo());
+		String sq1 = String.format("INSERT INTO %1$s.USUARIOS (CODIGO, NOMBRE, CORREO, TIPO) VALUES (%2$d, %3$s, %4$s, %5$s)", USUARIO, usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo(), usuario.getTipo());
 		
 		System.out.println(sq1);
 		
@@ -135,7 +135,7 @@ public class DAOUsuario {
 	{
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append(String.format("UPDATE %s.USUARIOS SET ", USUARIO));
-		sq1.append(String.format(" CODIGO  = '%1$d' , NOMBRE = '%2$s' , CORREO = '%3$s'", usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo()));
+		sq1.append(String.format(" CODIGO  = '%1$d' , NOMBRE = '%2$s' , CORREO = '%3$s', TIPO = '%4$s'", usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo(), usuario.getTipo()));
 		sq1.append(String.format(" WHERE CODIGO = 1%d", usuario.getCodigoUniandes()));
 		
 		System.out.println(sq1);
@@ -171,8 +171,9 @@ public class DAOUsuario {
 		Long codigo = resultSet.getLong("CODIGO");
 		String nombre = resultSet.getString("NOMBRE");
 		String correo = resultSet.getString("CORREO");
+		String tipo = resultSet.getString("TIPO");
 
-		Usuario usuario = new Usuario(codigo, nombre, correo);
+		Usuario usuario = new Usuario(codigo, nombre, correo, tipo);
 
 		return usuario;
 	}
@@ -200,5 +201,6 @@ public class DAOUsuario {
 				}
 		}
 	}
+	
 
 }

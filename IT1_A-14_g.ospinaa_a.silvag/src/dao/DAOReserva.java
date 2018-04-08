@@ -189,7 +189,6 @@ public class DAOReserva {
 
 		int i = 0;
 		while (rs.next() && i <= 20) {
-			System.out.println(rs.toString() + "ARREGLAR ESTO PARA QUE QUEDE BONITO");
 			respu.add(convertResultToRFC2(rs));
 			i++;
 		}
@@ -197,6 +196,43 @@ public class DAOReserva {
 		return respu;
 	}
 
+	
+	public String RFC6(Long codigo) throws SQLException, Exception
+	{
+		StringBuilder respu = new StringBuilder();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT re.CODIGOUNIANDINO, (re.FECHA_FINAL - re.FECHA_INICIAL) diasAlquilados, op.TIPO as TipoOperador, hab.TIPO as TipoHabitacion, re.PRECIO as Precio");
+		sql.append("FROM RESERVAS re RIGHT JOIN OPERADORES op ");
+		sql.append("ON op.ID_OPERADOR = re.ID_OPERADOR RIGHT JOIN HABITACION hab");		
+		sql.append("ON re.ID_OPERADOR = hab.ID_OPERADOR;");		
+		sql.append(String.format("WHERE re.CODIGOUNIANDES = %d", codigo));
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+		
+		int i = 0;
+		
+		while(rs.next())
+		{
+			
+			respu.append("--------------------- Reserva "+ i + "-----------------------");
+			respu.append("El usuario tiene codigo:" + convertResultToRFC6(rs).getCodigouniandes());
+			respu.append("La duracion de la estadia: " + convertResultToRFC6(rs).getDiasalquilados() +" dias");
+			respu.append("El tipo de operador era: " + convertResultToRFC6(rs).getTipooperador());
+			respu.append("El tipo de la habitacion era" + convertResultToRFC6(rs).getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
+			respu.append("El precio pagado por esta reserva fue: " + convertResultToRFC6(rs).getPrecio());
+
+			i++;
+		}
+		
+		return respu.toString();
+	}
+	
+	
 	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a
 	 * partir del parametro ingresado<br/>
@@ -299,6 +335,17 @@ public class DAOReserva {
 		return reserva;
 	}
 	
+	public RFC6 convertResultToRFC6(ResultSet resultSet) throws SQLException
+	{
+		Long codigouniandes = resultSet.getLong("CODIGOUNIANDES");
+		Integer diasalquilados = resultSet.getInt("DIASALQUILADOS");
+		String tipooperador = resultSet.getString("TIPOOPERADOR");
+		String tipohabitacion = resultSet.getString("TIPOHABITACION");
+		Double precio = resultSet.getDouble("PRECIO");
+		
+		return new RFC6(codigouniandes, diasalquilados, tipooperador, tipohabitacion, precio);
+	}
+	
 	public RFC2 convertResultToRFC2(ResultSet resultSet) throws SQLException{
 		Integer habitacion = resultSet.getInt("ID_HABITACION");
 		Integer operador = resultSet.getInt("ID_OPERADOR");
@@ -311,6 +358,7 @@ public class DAOReserva {
 		Integer operador = resultSet.getInt("ID_OPERADOR");
 		return new RFC1(nombre,operador,ganancia);
 	}
+	
 
 	private char boolToInt(Boolean bol) {
 		return bol ? '1' : '0';

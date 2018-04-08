@@ -26,6 +26,9 @@ public class Usuario
 	@JsonProperty(value = "correo") 
 	private String correo;
 	
+	@JsonProperty(value = "tipo")
+	private String tipo;
+	
 	
 	
 ////////////////////////////////////////////
@@ -38,11 +41,12 @@ public class Usuario
 	 * @param codigo
 	 * @param nombre
 	 */
-	public Usuario(@JsonProperty(value = "codigoUniandes") Long codigo, @JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "correo") String correo)
+	public Usuario(@JsonProperty(value = "codigoUniandes") Long codigo, @JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "correo") String correo, @JsonProperty(value = "tipo") String tipo)
 	{
 		this.codigoUniandes = codigo;
 		this.nombre = nombre;
 		this.correo = correo;
+		this.tipo = tipo;
 	}
 	
 ////////////////////////////////////////////
@@ -91,6 +95,14 @@ public class Usuario
 	 */
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	
