@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.Connection;
+
+import vos.*;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -731,4 +733,27 @@ public class DAOOperador {
 				}
 		}
 	}
+
+/////////////////////////////////Requerimientos funcionales//////////////////////////////
+public ArrayList<RFC3> RFC3()throws SQLException,Exception{
+	ArrayList<RFC3> respu = new ArrayList<>();
+	
+	String sql = "SELECT OCUPACION/CUPO as indice, id_operador from operadores";
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	ResultSet rs = prepstmt.executeQuery();
+
+	while (rs.next()) {
+		respu.add(convertResultToRFC3(rs));
+	}
+	System.out.println(respu);
+	return respu;
+	
+}
+
+public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{
+	Double indice = resultSet.getDouble("INDICE");
+	Integer id = resultSet.getInt("ID_OPERADOR");
+	return new RFC3(indice,id);
+}
 }
