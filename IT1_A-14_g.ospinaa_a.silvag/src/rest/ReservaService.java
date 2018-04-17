@@ -18,10 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.ws.ResponseWrapper;
 
 import tm.AlohaTransactionManager;
-import vos.Reserva;
-import vos.Usuario;
-import vos.RFC2;
-import vos.RFC1;
+import vos.*;
 
 @Path("reservas")
 public class ReservaService {
@@ -236,6 +233,22 @@ public class ReservaService {
 
 			List<RFC2> reservas;
 			reservas = tm.RFC2();
+			return Response.status(200).entity(reservas).build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Path("RFC6")
+	public Response RFC6(Long usuario) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+
+			List<RFC6_2> reservas;
+			reservas = tm.RFC6(usuario);
 			return Response.status(200).entity(reservas).build();
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
