@@ -733,6 +733,14 @@ public class DAOOperador {
 				}
 		}
 	}
+	
+public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa){
+	Date inicio = (Date)mapa.get("inicio");
+	Date finale = (Date)mapa.get("final");
+	ArrayList<String> lista = (ArrayList<String>)mapa.get("servicios");
+	
+	
+}
 
 /////////////////////////////////Requerimientos funcionales//////////////////////////////
 public ArrayList<RFC3> RFC3()throws SQLException,Exception{
@@ -755,5 +763,10 @@ public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{
 	Double indice = resultSet.getDouble("INDICE");
 	Integer id = resultSet.getInt("ID_OPERADOR");
 	return new RFC3(indice,id);
+}
+
+public RFC4 convertResultToRFC4(ResultSet resultSet) throws SQLException{
+	Integer id = resultSet.getInt("ID_OPERADOR");
+	return new RFC4(id);
 }
 }

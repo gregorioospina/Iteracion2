@@ -2,6 +2,7 @@
 package rest;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -26,6 +27,7 @@ import vos.Hostal;
 import vos.Hotel;
 import vos.Operador;
 import vos.PersonaNatural;
+import vos.RFC4;
 import vos.Reserva;
 import vos.Vivienda;
 import vos.ViviendaUni;
@@ -201,6 +203,21 @@ public class OperadorService {
 			tm.addOperador(object, tipo);
 			return Response.status(200).language("todo bien").build();
 		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@PUT
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Path("RFC4")
+	public Response RFC4(LinkedHashMap<String, Object> mapa) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			List<RFC4> rff4s = tm.RFC4(mapa);
+			return Response.status(200).entity(rff4s).build();
+			
+		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}

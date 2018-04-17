@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -484,6 +485,42 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
+		public List<RFC4> RFC4(LinkedHashMap<String, Object> mapa) throws SQLException{
+			ArrayList<RFC4> respu = new ArrayList<>();
+			DAOOperador daoOperador = new DAOOperador();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				respu = daoOperador.RFC4(mapa);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
 		
 		/**
 		 * RFC2
