@@ -485,6 +485,8 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
+		
+		
 		public List<RFC4> RFC4(LinkedHashMap<String, Object> mapa) throws SQLException{
 			ArrayList<RFC4> respu = new ArrayList<>();
 			DAOOperador daoOperador = new DAOOperador();
@@ -520,6 +522,45 @@ public class AlohaTransactionManager {
 				}
 			}
 			return respu;
+		}
+		
+		public List<RFC6_2> RFC6(Long usuario) throws Exception {
+			ArrayList<RFC6_2> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC6(usuario);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
 		}
 		
 		/**

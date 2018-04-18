@@ -16,17 +16,17 @@ public class RFC6 {
 	@JsonProperty(value = "tipohabitacion")
 	private String tipohabitacion;
 	
-	@JsonProperty(value = "precio")
-	private Double precio;
+	@JsonProperty(value = "pagado")
+	private Double pagado;
 
 	public RFC6(Long codigouniandes, Integer diasalquilados, String tipooperador, String tipohabitacion,
-			Double precio) {
+			Double pagado) {
 		super();
 		this.codigouniandes = codigouniandes;
 		this.diasalquilados = diasalquilados;
 		this.tipooperador = tipooperador;
 		this.tipohabitacion = tipohabitacion;
-		this.precio = precio;
+		this.pagado = pagado;
 	}
 
 	public Long getCodigouniandes() {
@@ -61,13 +61,14 @@ public class RFC6 {
 		this.tipohabitacion = tipohabitacion;
 	}
 
-	public Double getPrecio() {
-		return precio;
+	public Double getPagado() {
+		return pagado;
 	}
 
-	public void setPrecio(Double precio) {
-		this.precio = precio;
+	public void setPagado(Double pagado) {
+		this.pagado = pagado;
 	}
+	
 	
 	
 	

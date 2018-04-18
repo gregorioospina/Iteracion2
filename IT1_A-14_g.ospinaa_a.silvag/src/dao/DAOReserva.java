@@ -143,7 +143,7 @@ public class DAOReserva {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append("SELECT op.NOMBRE, re.ID_OPERADOR ID_OPERADOR, SUM(PRECIO) as GANANCIA_ANUAL");
 		sq1.append(String.format(" FROM %1$s.RESERVAS re , %1$s.OPERADORES op", USUARIO));
-		sq1.append(" WHERE re.FECHA_INICIAL > CURRENT_DATE - 800");
+		sq1.append(" WHERE re.FECHA_INICIAL > CURRENT_DATE - 1500");
 		sq1.append(" AND re.ID_OPERADOR = op.ID_OPERADOR");
 		sq1.append(" GROUP BY re.ID_OPERADOR, op.NOMBRE");
 		sq1.append(" ORDER BY GANANCIA_ANUAL DESC");
@@ -197,16 +197,15 @@ public class DAOReserva {
 	}
 
 	
-	public String RFC6(Long codigo) throws SQLException, Exception
+	public ArrayList<RFC6_2> RFC6 (Long codigo) throws SQLException, Exception
 	{
-		StringBuilder respu = new StringBuilder();
-		
+	
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT re.CODIGOUNIANDINO, (re.FECHA_FINAL - re.FECHA_INICIAL) diasAlquilados, op.TIPO as TipoOperador, hab.TIPO as TipoHabitacion, re.PRECIO as Precio");
-		sql.append("FROM RESERVAS re RIGHT JOIN OPERADORES op ");
+		sql.append("SELECT re.CODIGOUNIANDINO as codigo, (re.FECHA_FINAL - re.FECHA_INICIAL) Dias_Alquilados, op.TIPO as Tipo_Operador, hab.TIPO as Tipo_Habitacion, re.PRECIO as Pagado");
+		sql.append("FROM RESERVAS re RIGHT JOIN OPERADORES op");
 		sql.append("ON op.ID_OPERADOR = re.ID_OPERADOR RIGHT JOIN HABITACION hab");		
-		sql.append("ON re.ID_OPERADOR = hab.ID_OPERADOR;");		
-		sql.append(String.format("WHERE re.CODIGOUNIANDES = %d", codigo));
+		sql.append("ON re.ID_OPERADOR = hab.ID_OPERADOR");		
+		sql.append(String.format("WHERE re.CODIGOUNIANDINO = %d;", codigo));
 		
 		System.out.println(sql);
 		
@@ -214,23 +213,10 @@ public class DAOReserva {
 		recursos.add(prepstmt);
 		ResultSet rs = prepstmt.executeQuery();
 		
-		int i = 0;
-		
-		while(rs.next())
-		{
-			
-			respu.append("--------------------- Reserva "+ i + "-----------------------");
-			respu.append("El usuario tiene codigo:" + convertResultToRFC6(rs).getCodigouniandes());
-			respu.append("La duracion de la estadia: " + convertResultToRFC6(rs).getDiasalquilados() +" dias");
-			respu.append("El tipo de operador era: " + convertResultToRFC6(rs).getTipooperador());
-			respu.append("El tipo de la habitacion era" + convertResultToRFC6(rs).getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
-			respu.append("El precio pagado por esta reserva fue: " + convertResultToRFC6(rs).getPrecio());
-
-			i++;
-		}
-		
-		return respu.toString();
+		return convertResultToRFC62(rs);
 	}
+	
+	
 	
 	
 	/**
@@ -337,13 +323,37 @@ public class DAOReserva {
 	
 	public RFC6 convertResultToRFC6(ResultSet resultSet) throws SQLException
 	{
-		Long codigouniandes = resultSet.getLong("CODIGOUNIANDES");
-		Integer diasalquilados = resultSet.getInt("DIASALQUILADOS");
-		String tipooperador = resultSet.getString("TIPOOPERADOR");
-		String tipohabitacion = resultSet.getString("TIPOHABITACION");
-		Double precio = resultSet.getDouble("PRECIO");
+		Long codigouniandes = resultSet.getLong("CODIGO");
+		Integer diasalquilados = resultSet.getInt("DIAS_ALQUILADOS");
+		String tipooperador = resultSet.getString("TIPO_OPERADOR");
+		String tipohabitacion = resultSet.getString("TIPO_HABITACION");
+		Double pagado = resultSet.getDouble("PAGADO");
 		
-		return new RFC6(codigouniandes, diasalquilados, tipooperador, tipohabitacion, precio);
+		return new RFC6(codigouniandes, diasalquilados, tipooperador, tipohabitacion, pagado);
+	}
+	
+	public ArrayList<RFC6_2> convertResultToRFC62(ResultSet rs) throws SQLException
+	{
+		ArrayList<RFC6_2> respu = new ArrayList<>();
+		int i = 0;
+		while(rs.next())
+		{
+			RFC6 grego = convertResultToRFC6(rs);
+			StringBuilder sb = new StringBuilder();
+			sb.append("--------------------- Reserva "+ i + "-----------------------");
+			sb.append("El usuario tiene codigo:" + grego.getCodigouniandes());
+			sb.append("La duracion de la estadia: " + grego.getDiasalquilados() +" dias");
+			sb.append("El tipo de operador era: " + grego.getTipooperador());
+			sb.append("El tipo de la habitacion era" + grego.getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
+			sb.append("El precio pagado por esta reserva fue: " + grego.getPagado());
+			i++;
+			System.out.println(sb.toString());
+			respu.add(new RFC6_2(sb.toString()));
+			
+		}
+			
+		return respu;		
+		
 	}
 	
 	public RFC2 convertResultToRFC2(ResultSet resultSet) throws SQLException{
