@@ -524,10 +524,9 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
-		public List<RFC6_2> RFC6(Long usuario) throws Exception {
-			ArrayList<RFC6_2> respu = new ArrayList<>();
+		public List<RFC6> RFC6(Long usuario) throws Exception {
+			ArrayList<RFC6> respu = new ArrayList<>();
 			DAOReserva daoReserva = new DAOReserva();
-			
 			try
 			{
 				this.conn = darConexion();

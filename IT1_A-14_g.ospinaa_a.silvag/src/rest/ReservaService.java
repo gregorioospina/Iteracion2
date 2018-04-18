@@ -1,5 +1,8 @@
 package rest;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -49,6 +52,26 @@ public class ReservaService {
 
 	private String doErrorMessage(Exception e) {
 		return "{ \"ERROR\": \"" + e.getMessage() + "\"}";
+	}
+	
+	public String gregoconversion(List<RFC6> rs) throws SQLException
+	{
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i<rs.size(); i++)
+		{
+			RFC6 grego = rs.get(i);
+			sb.append("--------------------- Reserva "+ i + "-----------------------");
+			sb.append("El usuario tiene codigo:" + grego.getCodigouniandes());
+			sb.append("La duracion de la estadia: " + grego.getDiasalquilados() +" dias");
+			sb.append("El tipo de operador era: " + grego.getTipooperador());
+			sb.append("El tipo de la habitacion era" + grego.getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
+			sb.append("El precio pagado por esta reserva fue: " + grego.getPagado());
+			sb.append("--------------------------------------------------------------");
+			
+		}
+		System.out.println(sb.toString());
+
+		return sb.toString();		
 	}
 
 	///////////////////////////////
@@ -243,13 +266,13 @@ public class ReservaService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Path("RFC6/{usuario: \\d+}")
-	public Response RFC6(Long usuario) {
+	public Response RFC6(@PathParam("usuario") Long usuario) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
 
-			List<RFC6_2> reservas;
+			List<RFC6> reservas;
 			reservas = tm.RFC6(usuario);
-			return Response.status(200).entity(reservas).build();
+			return Response.status(200).entity(gregoconversion(reservas)).build();
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}

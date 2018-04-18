@@ -3,24 +3,27 @@ package vos;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class RFC6 {
-	
+
 	@JsonProperty(value = "codigouniandes")
 	private Long codigouniandes;
-	
+
 	@JsonProperty(value = "diasalquilados")
 	private Integer diasalquilados;
-	
+
 	@JsonProperty(value = "tipooperador")
 	private String tipooperador;
-	
+
 	@JsonProperty(value = "tipohabitacion")
 	private String tipohabitacion;
-	
+
 	@JsonProperty(value = "pagado")
 	private Double pagado;
 
-	public RFC6(Long codigouniandes, Integer diasalquilados, String tipooperador, String tipohabitacion,
-			Double pagado) {
+	public RFC6(@JsonProperty(value = "codigouniandes") Long codigouniandes,
+			@JsonProperty(value = "diasalquilados") Integer diasalquilados,
+			@JsonProperty(value = "tipooperador") String tipooperador,
+			@JsonProperty(value = "tipohabitacion") String tipohabitacion,
+			@JsonProperty(value = "pagado") Double pagado) {
 		super();
 		this.codigouniandes = codigouniandes;
 		this.diasalquilados = diasalquilados;
@@ -68,10 +71,5 @@ public class RFC6 {
 	public void setPagado(Double pagado) {
 		this.pagado = pagado;
 	}
-	
-	
-	
-	
-	
 
 }
