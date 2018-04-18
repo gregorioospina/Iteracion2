@@ -11,7 +11,7 @@ public class RFC4 {
 		return operador;
 	}
 
-	public void setOperador(Integer operador) {
+	public void setOperador(@JsonProperty(value="operador") Integer operador) {
 		this.operador = operador;
 	}
 
