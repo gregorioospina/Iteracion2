@@ -143,7 +143,7 @@ public class DAOReserva {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append("SELECT op.NOMBRE, re.ID_OPERADOR ID_OPERADOR, SUM(PRECIO) as GANANCIA_ANUAL");
 		sq1.append(String.format(" FROM %1$s.RESERVAS re , %1$s.OPERADORES op", USUARIO));
-		sq1.append(" WHERE re.FECHA_INICIAL > CURRENT_DATE - 800");
+		sq1.append(" WHERE re.FECHA_INICIAL > CURRENT_DATE - 1500");
 		sq1.append(" AND re.ID_OPERADOR = op.ID_OPERADOR");
 		sq1.append(" GROUP BY re.ID_OPERADOR, op.NOMBRE");
 		sq1.append(" ORDER BY GANANCIA_ANUAL DESC");
@@ -202,10 +202,10 @@ public class DAOReserva {
 	
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT re.CODIGOUNIANDINO as codigo, (re.FECHA_FINAL - re.FECHA_INICIAL) Dias_Alquilados, op.TIPO as Tipo_Operador, hab.TIPO as Tipo_Habitacion, re.PRECIO as Pagado");
-		sql.append("FROM RESERVAS re RIGHT JOIN OPERADORES op ");
+		sql.append("FROM RESERVAS re RIGHT JOIN OPERADORES op");
 		sql.append("ON op.ID_OPERADOR = re.ID_OPERADOR RIGHT JOIN HABITACION hab");		
-		sql.append("ON re.ID_OPERADOR = hab.ID_OPERADOR;");		
-		sql.append(String.format("WHERE re.CODIGOUNIANDES = %d;", codigo));
+		sql.append("ON re.ID_OPERADOR = hab.ID_OPERADOR");		
+		sql.append(String.format("WHERE re.CODIGOUNIANDINO = %d;", codigo));
 		
 		System.out.println(sql);
 		
@@ -347,6 +347,7 @@ public class DAOReserva {
 			sb.append("El tipo de la habitacion era" + grego.getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
 			sb.append("El precio pagado por esta reserva fue: " + grego.getPagado());
 			i++;
+			System.out.println(sb.toString());
 			respu.add(new RFC6_2(sb.toString()));
 			
 		}
