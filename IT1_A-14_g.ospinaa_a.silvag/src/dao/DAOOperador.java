@@ -734,12 +734,35 @@ public class DAOOperador {
 		}
 	}
 	
-public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa){
+public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLException{
+	ArrayList<RFC4> respu = new ArrayList<>();
 	Date inicio = (Date)mapa.get("inicio");
 	Date finale = (Date)mapa.get("final");
 	ArrayList<String> lista = (ArrayList<String>)mapa.get("servicios");
-	
-	
+	String sql = "";
+	if(buscar(lista, "amoblado")&&buscar(lista, "tv")&&buscar(lista, "internet")) {
+		//APARTAMENTO
+	}else if(buscar(lista, "restaurante")&&buscar(lista, "piscina")&&buscar(lista, "parqueadero")&&buscar(lista, "wifi")&&buscar(lista, "tvcable")) {
+		//HOTEL
+	}else if(buscar(lista, "salas de estudio")&&buscar(lista, "restaurante")&&buscar(lista, "gimnasio")) {
+		//viviendauni
+	}
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	ResultSet rs = prepstmt.executeQuery();
+	while(rs.next()) {
+		respu.add(convertResultToRFC4(rs));
+	}
+	System.out.println(respu);
+	return respu;
+}
+public boolean buscar(ArrayList<String> lista, String s1) {
+	for(String s:lista) {
+		if (s.equalsIgnoreCase(s1)){
+			return true;
+		}
+	}
+	return false;
 }
 
 /////////////////////////////////Requerimientos funcionales//////////////////////////////
