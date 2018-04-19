@@ -61,13 +61,13 @@ public class ReservaService {
 		for(int i = 0; i<rs.size(); i++)
 		{
 			RFC6 grego = rs.get(i);
-			sb.append("--------------------- Reserva "+ i + "-----------------------");
-			sb.append("El usuario tiene codigo:" + grego.getCodigouniandes());
-			sb.append("La duracion de la estadia: " + grego.getDiasalquilados() +" dias");
-			sb.append("El tipo de operador era: " + grego.getTipooperador());
-			sb.append("El tipo de la habitacion era" + grego.getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones.");
-			sb.append("El precio pagado por esta reserva fue: " + grego.getPagado());
-			sb.append("--------------------------------------------------------------");
+			sb.append("--------------------- Reserva "+ i + "----------------------- \n");
+			sb.append("El usuario tiene codigo: " + grego.getCodigouniandes()+"\n");
+			sb.append("La duracion de la estadia: " + grego.getDiasalquilados() +" dias \n");
+			sb.append("El tipo de operador era: " + grego.getTipooperador()+"\n");
+			sb.append("El tipo de la habitacion era: " + grego.getTipohabitacion() +" Si es null, es porque el alojamiento no tiene habitaciones. \n");
+			sb.append("El precio pagado por esta reserva fue: " + grego.getPagado()+"\n");
+			sb.append("-------------------------------------------------------------- \n");
 			
 		}
 		System.out.println(sb.toString());
