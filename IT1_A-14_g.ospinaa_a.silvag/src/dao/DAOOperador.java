@@ -735,6 +735,13 @@ public class DAOOperador {
 	}
 	
 public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLException{
+	/*
+	 * {
+	 * inicio:date
+	 * final:date
+	 * servicios:["dd","dd"]
+	 * }
+	 */
 	ArrayList<RFC4> respu = new ArrayList<>();
 	Date inicio = (Date)mapa.get("inicio");
 	Date finale = (Date)mapa.get("final");
@@ -759,7 +766,7 @@ public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLExcepti
 	}else if(buscar(lista, "salas de estudio")&&buscar(lista, "restaurante")&&buscar(lista, "gimnasio")) {
 		//viviendauni
 		sql = String.format("SELECT ID_OPERADOR\r\n" + 
-				"FROM APARTAMENTO\r\n" + 
+				"FROM VIVIENDAUNI\r\n" + 
 				"MINUS\r\n" + 
 				"SELECT ID_OPERADOR\r\n" + 
 				"FROM RESERVAS\r\n" + 
@@ -775,6 +782,46 @@ public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLExcepti
 	System.out.println(respu);
 	return respu;
 }
+
+public ArrayList<RFC4> RFC4(String tipo,Date inicio, Date finale) throws SQLException{
+	ArrayList<RFC4> respu = new ArrayList<>();
+	String sql = "";
+	if(tipo.equalsIgnoreCase("apartamento")) {
+		sql = String.format("SELECT ID_OPERADOR\r\n" + 
+				"FROM APARTAMENTO\r\n" + 
+				"MINUS\r\n" + 
+				"SELECT ID_OPERADOR\r\n" + 
+				"FROM RESERVAS\r\n" + 
+				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+	}else if(tipo.equalsIgnoreCase("hotel")||tipo.equalsIgnoreCase("hostal")) {
+		//HOTEL
+		sql = String.format("SELECT ID_OPERADOR\r\n" + 
+				"FROM HOTEL\r\n" + 
+				"MINUS\r\n" + 
+				"SELECT ID_OPERADOR\r\n" + 
+				"FROM RESERVAS\r\n" + 
+				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+	
+	}else if(tipo.equalsIgnoreCase("vivienda")) {
+		//viviendauni
+		sql = String.format("SELECT ID_OPERADOR\r\n" + 
+				"FROM viviendauni\r\n" + 
+				"MINUS\r\n" + 
+				"SELECT ID_OPERADOR\r\n" + 
+				"FROM RESERVAS\r\n" + 
+				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+	
+	}
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	ResultSet rs = prepstmt.executeQuery();
+	while(rs.next()) {
+		respu.add(convertResultToRFC4(rs));
+	}
+	System.out.println(respu);
+	return respu;
+}
+
 public boolean buscar(ArrayList<String> lista, String s1) {
 	for(String s:lista) {
 		if (s.equalsIgnoreCase(s1)){

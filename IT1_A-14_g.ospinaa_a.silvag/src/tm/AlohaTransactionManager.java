@@ -485,7 +485,41 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
-		
+		public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
+			
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				daoReserva.RFC7(mapa);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+		}
 		
 		public List<RFC4> RFC4(LinkedHashMap<String, Object> mapa) throws SQLException{
 			ArrayList<RFC4> respu = new ArrayList<>();
