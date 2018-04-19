@@ -282,11 +282,11 @@ public class ReservaService {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	@Path("RFC7")
-	public Response RFC7(LinkedHashMap<String, Object> mapa) {
+	@Path("RF7")
+	public Response RF7(LinkedHashMap<String, Object> mapa) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			tm.RFC7(mapa);
+			tm.RF7(mapa);
 			return Response.status(200).entity("").build();
 			
 		}catch (Exception e) {

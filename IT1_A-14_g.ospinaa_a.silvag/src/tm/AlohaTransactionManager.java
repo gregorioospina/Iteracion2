@@ -488,7 +488,7 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
-		public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
+		public void RF7(LinkedHashMap<String, Object> mapa)throws SQLException{
 			
 			DAOReserva daoReserva = new DAOReserva();
 			DAOOperador daoOperador =new DAOOperador();
