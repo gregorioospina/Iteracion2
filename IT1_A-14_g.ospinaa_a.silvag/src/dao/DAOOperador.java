@@ -861,6 +861,12 @@ public ArrayList<RFC3> RFC3()throws SQLException,Exception{
 	return respu;
 	
 }
+public void RF10(Long id)throws SQLException{
+	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	prepstmt.executeQuery();
+}
 
 public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{
 	Double indice = resultSet.getDouble("INDICE");
