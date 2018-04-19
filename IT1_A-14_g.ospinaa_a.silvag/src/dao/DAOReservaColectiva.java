@@ -123,7 +123,7 @@ public class DAOReservaColectiva
 		prepStmt.executeQuery();
 	}
 	
-	public void deleteReserva(Reserva reserva) throws SQLException, Exception {
+	public void deleteReservaFromColectiva(Reserva reserva) throws SQLException, Exception {
 		String sq1 = String.format("DELETE FROM %1$s.RESERVAS_COLECTIVAS WHERE ID_RESERVA = %2$d", USUARIO,
 				reserva.getIdReserva());
 		System.out.println(sq1);
@@ -132,6 +132,7 @@ public class DAOReservaColectiva
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 	}
+	
 	
 	////////////////////////////////
 	////// METODOS AUXILIARES////////
