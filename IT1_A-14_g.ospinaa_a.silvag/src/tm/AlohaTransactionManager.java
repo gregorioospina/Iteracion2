@@ -811,7 +811,7 @@ public class AlohaTransactionManager {
 		}
 		
 		
-		public void rf8(Long id) throws SQLException, Exception {
+		public void RF8(Long id) throws SQLException, Exception {
 			DAOReserva daoReserva = new DAOReserva( );
 			try
 			{
@@ -819,6 +819,41 @@ public class AlohaTransactionManager {
 				daoReserva.setConn( conn );
 				
 				daoReserva.rf8(id);		
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+		
+		public void RF9(Long id) throws SQLException, Exception {
+			DAOReserva daoReserva = new DAOReserva( );
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn( conn );
+				
+				daoReserva.rf9(id);		
 
 			}
 			catch (SQLException sqlException) {

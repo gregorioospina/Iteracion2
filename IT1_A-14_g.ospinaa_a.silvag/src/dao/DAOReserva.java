@@ -307,6 +307,25 @@ public class DAOReserva {
 			cancelarReserva(convertResultToRF8(rs));
 		}
 	}
+	
+	public void rf9(Long id) throws Exception{
+		String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+		
+		sql = String.format("SELECT *\r\n" + 
+				"FROM Reservas \r\n" + 
+				"where ID_OPERADOR = %d AND FECHA_INICIAL>CURRENT_DATE AND CANCELADO = '0'" , id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			cancelarReserva(convertResultToRF8(rs));
+			Reserva reservaTemp = convertResultToReserva(rs);
+			reservaTemp.setIdReserva(reservaTemp.getIdReserva()+10000);
+			addReserva(reservaTemp);
+		}
+		
+		
+	}
 
 	/**
 	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene

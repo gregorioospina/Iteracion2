@@ -203,7 +203,7 @@ public class ReservaService {
 	}
 	
 	@POST
-	@Path("cancelar/{id: \\\\d+}")
+	@Path("cancelar/{id: \\d+}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
 	public Response cancelarReserva(@PathParam("id") Long id) {
@@ -218,14 +218,27 @@ public class ReservaService {
 		}
 	}
 	@POST
-	@Path("rf8/{id: \\\\d+}")
+	@Path("RF8/{id: \\d+}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
 	public Response rf8(@PathParam("id") Long id) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
 			
-			tm.rf8(id);
+			tm.RF8(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@GET
+	@Path("RF9/{id:\\d+}")
+	public Response RF9(@PathParam("id")Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.RF9(id);
 			return Response.status(200).entity("cancelada").build();
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
