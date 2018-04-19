@@ -10,7 +10,7 @@ public class RFC3 {
 	@JsonProperty(value = "id")
 	private Integer id;
 
-	public RFC3(Double indice, Integer id) {
+	public RFC3(@JsonProperty(value = "indice") Double indice,@JsonProperty(value = "id") Integer id) {
 		super();
 		this.indice = indice;
 		this.id = id;

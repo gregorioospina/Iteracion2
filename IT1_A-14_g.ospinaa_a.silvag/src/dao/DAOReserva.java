@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import vos.*;
@@ -197,8 +198,7 @@ public class DAOReserva {
 	}
 
 	
-	public ArrayList<RFC6> RFC6 (Long codigo) throws SQLException, Exception
-	{
+	public ArrayList<RFC6> RFC6 (Long codigo) throws SQLException, Exception{
 		ArrayList<RFC6> respu = new ArrayList<>();
 	
 		StringBuilder sql = new StringBuilder();
@@ -220,6 +220,19 @@ public class DAOReserva {
 		}
 		
 		return respu;
+		
+	}
+	
+	public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
+		/*
+		 * {
+		 * cantidad: int
+		 * tipo: "string"
+		 * }
+		 */
+		Integer cantReservas = (Integer)mapa.get("cantidad");
+		String tipo = (String)mapa.get("tipo");
+		String sql ="Alter session set isolation_level=serializable";
 		
 	}
 	

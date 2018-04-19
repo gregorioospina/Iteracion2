@@ -3,6 +3,7 @@ package rest;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -274,6 +275,21 @@ public class ReservaService {
 			reservas = tm.RFC6(usuario);
 			return Response.status(200).entity(gregoconversion(reservas)).build();
 		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@POST
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("RFC7")
+	public Response RFC7(LinkedHashMap<String, Object> mapa) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			tm.RFC7(mapa);
+			return Response.status(200).entity("").build();
+			
+		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
