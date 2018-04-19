@@ -66,11 +66,11 @@ public class Apartamento extends Operador {
 	 */
 	public Apartamento(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo, @JsonProperty(value="ocupacion")Integer ocupacion,@JsonProperty(value = "amoblado") Boolean amoblado,
+			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo, @JsonProperty(value="ocupacion")Integer ocupacion, @JsonProperty(value = "habilitado") Boolean habilitado,@JsonProperty(value = "amoblado") Boolean amoblado,
 			@JsonProperty(value = "servicioPublico") Boolean servicioPublico,
 			@JsonProperty(value = "administracion") Boolean administracion, @JsonProperty(value = "tv") Boolean tv,
 			@JsonProperty(value = "internet") Boolean internet, @JsonProperty(value = "precio") Double precio) {
-		super(idOperador, cupoTotal, correo, nombre, tipo,ocupacion);
+		super(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, habilitado);
 		this.amoblado = amoblado;
 		this.servicioPublico = servicioPublico;
 		this.administracion = administracion;

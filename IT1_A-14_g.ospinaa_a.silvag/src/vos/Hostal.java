@@ -41,13 +41,13 @@ public class Hostal extends Hotel {
 	 */
 	public Hostal(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,@JsonProperty(value="ocupacion")Integer ocupacion, @JsonProperty(value = "restaurante") Boolean restaurante,
+			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,@JsonProperty(value="ocupacion")Integer ocupacion, @JsonProperty(value = "habilitado") Boolean habilitado, @JsonProperty(value = "restaurante") Boolean restaurante,
 			@JsonProperty(value = "piscina") Boolean piscina, 
 			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
 			@JsonProperty(value = "tvCable") Boolean tvCable,
 			@JsonProperty(value = "horaApertura") Integer horaApertura,
 			@JsonProperty(value = "horaCierre") Integer horaCierre, @JsonProperty(value="numRegistro") Long numRegisto, @JsonProperty(value="direccion")String direccion) {
-		super(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, restaurante, piscina, parqueadero, wifi, tvCable, numRegisto, direccion);
+		super(idOperador, cupoTotal, correo, nombre, tipo,ocupacion,habilitado, restaurante, piscina, parqueadero, wifi, tvCable, numRegisto, direccion);
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 	}
