@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Properties;
@@ -26,6 +28,7 @@ public class AlohaTransactionManager {
 	 * de la conexion
 	 */
 	private static final String CONNECTION_DATA_FILE_NAME_REMOTE = "/conexion.properties";
+	public final static String USUARIO = "ISIS2304A311810";
 
 	/**
 	 * Atributo estatico que contiene el path absoluto del archivo que tiene los
@@ -488,12 +491,46 @@ public class AlohaTransactionManager {
 		public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
 			
 			DAOReserva daoReserva = new DAOReserva();
+			DAOOperador daoOperador =new DAOOperador();
+			Statement s = conn.createStatement();
 			
 			try
 			{
 				this.conn = darConexion();
 				daoReserva.setConn(conn);
-				daoReserva.RFC7(mapa);
+				/*
+				 * {
+				 * cantidad: int
+				 * tipo: "string"
+				 * inicio: date
+				 * final: date
+				 * identificador: int
+				 * usuario : int
+				 * }
+				 */
+				Integer cantReservas = (Integer)mapa.get("cantidad");
+				String tipo = (String)mapa.get("tipo");
+				Date inicio = (Date)mapa.get("inicio");
+				Date finale = (Date)mapa.get("final");
+				Integer identificador = (Integer)mapa.get("identificador");
+				Integer usuario = (Integer)mapa.get("usuario");
+				String sql ="Alter session set isolation_level=serializable";
+				
+				s.addBatch(sql);
+				
+				ArrayList<RFC4> lista = daoOperador.RFC4(tipo, inicio, finale);
+				
+				for (int i = 0; i < cantReservas; i++) {
+					sql = String.format("INSERT INTO RESERVAS_COLECTIVAS values (%1$d,%2$d)", identificador*i+10000,identificador);
+					s.addBatch(sql);
+					sql = String.format(
+							"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, FECHA_INICIAL, FECHA_FINAL, HORA_CREACION) VALUES (%2$d, %3$d, %4$d, '%5$c', %6$f, TO_DATE('%7$tF', 'YYYY-MM-DD'), TO_DATE('%8$tF', 'YYYY-MM-DD'), CURRENT_TIMESTAMP)",
+							USUARIO, identificador*i+10000, usuario, lista.get(i), 'N',
+							0,  inicio, finale);
+					s.addBatch(sql);
+				}
+				s.addBatch("commit");
+				s.executeBatch();
 			}
 			
 			catch (SQLException sqlException) {
@@ -509,9 +546,12 @@ public class AlohaTransactionManager {
 			finally {
 				try {
 					daoReserva.cerrarRecursos();
+					daoOperador.cerrarRecursos();
+					s.close();
 					if(this.conn!=null){
 						this.conn.close();					
 					}
+					
 				}
 				catch (SQLException exception) {
 					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
@@ -1203,6 +1243,8 @@ public class AlohaTransactionManager {
 			}
 			return operadors;
 		}
+		
+		
 		
 		/**
 		 * Metodo que modela la transaccion que retorna todos los operador disponibles del operador

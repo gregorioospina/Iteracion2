@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -30,6 +31,8 @@ public class DAOReserva {
 	 * Arraylits de recursos que se usan para la ejecucion de sentencias SQL
 	 */
 	private ArrayList<Object> recursos;
+	
+	private ArrayList<Object> recursos2;
 
 	/**
 	 * Atributo que genera la conexion a la base de datos
@@ -223,18 +226,7 @@ public class DAOReserva {
 		
 	}
 	
-	public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
-		/*
-		 * {
-		 * cantidad: int
-		 * tipo: "string"
-		 * }
-		 */
-		Integer cantReservas = (Integer)mapa.get("cantidad");
-		String tipo = (String)mapa.get("tipo");
-		String sql ="Alter session set isolation_level=serializable";
-		
-	}
+
 	
 	
 	
@@ -395,6 +387,14 @@ public class DAOReserva {
 			if (ob instanceof PreparedStatement)
 				try {
 					((PreparedStatement) ob).close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
+		for (Object ob : recursos2) {
+			if (ob instanceof PreparedStatement)
+				try {
+					((Statement) ob).close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
