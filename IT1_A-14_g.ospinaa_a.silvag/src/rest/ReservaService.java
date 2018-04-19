@@ -201,6 +201,37 @@ public class ReservaService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	@POST
+	@Path("cancelar/{id: \\\\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response cancelarReserva(@PathParam("id") Long id) {
+
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.cancelarReserva(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	@POST
+	@Path("rf8/{id: \\\\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response rf8(@PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.rf8(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
 
 	/**
 	 * Metodo que borra un usuario y comenta sobre los casos de error.
@@ -293,6 +324,8 @@ public class ReservaService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	
 
 
 	

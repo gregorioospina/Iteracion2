@@ -289,6 +289,24 @@ public class DAOReserva {
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 	}
+	
+	public void cancelarReserva(Long id) throws SQLException {
+
+		String sql = String.format("UPDATE reservas SET precio = precio*.1,cancelado = '1' where id_reserva = %d", id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
+	
+	public void rf8(Long id) throws SQLException {
+		String sql = String.format("SELECT ID_RESERVA FROM RESERVAS_COLECTIVAS WHERE ID_COLECTIVO = %d", id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			cancelarReserva(convertResultToRF8(rs));
+		}
+	}
 
 	/**
 	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene
@@ -349,6 +367,10 @@ public class DAOReserva {
 		Integer habitacion = resultSet.getInt("ID_HABITACION");
 		Integer operador = resultSet.getInt("ID_OPERADOR");
 		return new RFC2(operador, habitacion);
+	}
+	
+	public Long convertResultToRF8(ResultSet resultSet)throws SQLException{
+		return resultSet.getLong("ID_RESERVA");
 	}
 	
 	public RFC1 convertResultToRFC1(ResultSet resultSet) throws SQLException{
