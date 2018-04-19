@@ -202,11 +202,11 @@ public class DAOReserva {
 		ArrayList<RFC6> respu = new ArrayList<>();
 	
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT re.CODIGOUNIANDINO as codigo, (re.FECHA_FINAL - re.FECHA_INICIAL) Dias_Alquilados, op.TIPO as Tipo_Operador, hab.TIPO as Tipo_Habitacion, re.PRECIO as Pagado ");
+		sql.append("SELECT re.CODIGOUNIANDINO as codigo, (re.FECHA_FINAL - re.FECHA_INICIAL) Dias_Alquilados, op.TIPO as Tipo_Operador, hab.TIPO as Tipo_Habitacion, re.PRECIO as Pagado   ");
 		sql.append(" FROM RESERVAS re RIGHT JOIN OPERADORES op ");
 		sql.append(" ON op.ID_OPERADOR = re.ID_OPERADOR RIGHT JOIN HABITACION hab ");		
 		sql.append(" ON re.ID_OPERADOR = hab.ID_OPERADOR ");		
-		sql.append(String.format(" WHERE re.CODIGOUNIANDINO = %d;", codigo));
+		sql.append(String.format(" WHERE re.CODIGOUNIANDINO = %d", codigo));
 		
 		System.out.println(sql);
 		
