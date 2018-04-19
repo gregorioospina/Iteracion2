@@ -201,6 +201,37 @@ public class ReservaService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	@POST
+	@Path("cancelar/{id: \\\\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response cancelarReserva(@PathParam("id") Long id) {
+
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.cancelarReserva(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	@POST
+	@Path("rf8/{id: \\\\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response rf8(@PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.rf8(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
 
 	/**
 	 * Metodo que borra un usuario y comenta sobre los casos de error.
@@ -282,17 +313,19 @@ public class ReservaService {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	@Path("RFC7")
-	public Response RFC7(LinkedHashMap<String, Object> mapa) {
+	@Path("RF7")
+	public Response RF7(LinkedHashMap<String, Object> mapa) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			tm.RFC7(mapa);
+			tm.RF7(mapa);
 			return Response.status(200).entity("").build();
 			
 		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	
 
 
 	

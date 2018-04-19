@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -30,6 +31,8 @@ public class DAOReserva {
 	 * Arraylits de recursos que se usan para la ejecucion de sentencias SQL
 	 */
 	private ArrayList<Object> recursos;
+	
+	private ArrayList<Object> recursos2;
 
 	/**
 	 * Atributo que genera la conexion a la base de datos
@@ -223,18 +226,7 @@ public class DAOReserva {
 		
 	}
 	
-	public void RFC7(LinkedHashMap<String, Object> mapa)throws SQLException{
-		/*
-		 * {
-		 * cantidad: int
-		 * tipo: "string"
-		 * }
-		 */
-		Integer cantReservas = (Integer)mapa.get("cantidad");
-		String tipo = (String)mapa.get("tipo");
-		String sql ="Alter session set isolation_level=serializable";
-		
-	}
+
 	
 	
 	
@@ -296,6 +288,24 @@ public class DAOReserva {
 		PreparedStatement prepStmt = conn.prepareStatement(sq1.toString());
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
+	}
+	
+	public void cancelarReserva(Long id) throws SQLException {
+
+		String sql = String.format("UPDATE reservas SET precio = precio*.1,cancelado = '1' where id_reserva = %d", id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
+	
+	public void rf8(Long id) throws SQLException {
+		String sql = String.format("SELECT ID_RESERVA FROM RESERVAS_COLECTIVAS WHERE ID_COLECTIVO = %d", id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			cancelarReserva(convertResultToRF8(rs));
+		}
 	}
 
 	/**
@@ -359,6 +369,10 @@ public class DAOReserva {
 		return new RFC2(operador, habitacion);
 	}
 	
+	public Long convertResultToRF8(ResultSet resultSet)throws SQLException{
+		return resultSet.getLong("ID_RESERVA");
+	}
+	
 	public RFC1 convertResultToRFC1(ResultSet resultSet) throws SQLException{
 		String nombre = resultSet.getString("NOMBRE");
 		Integer ganancia = resultSet.getInt("GANANCIA_ANUAL");
@@ -395,6 +409,14 @@ public class DAOReserva {
 			if (ob instanceof PreparedStatement)
 				try {
 					((PreparedStatement) ob).close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
+		for (Object ob : recursos2) {
+			if (ob instanceof PreparedStatement)
+				try {
+					((Statement) ob).close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
