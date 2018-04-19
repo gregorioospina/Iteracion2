@@ -10,18 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-
 import org.codehaus.jackson.annotate.JsonProperty;
-
 import EstructurasAuxiliares.Pair;
-import vos.Apartamento;
-import vos.Hostal;
-import vos.Hotel;
-import vos.Hotel;
-import vos.Operador;
-import vos.PersonaNatural;
-import vos.Vivienda;
-import vos.ViviendaUni;
+
 
 public class DAOOperador {
 
