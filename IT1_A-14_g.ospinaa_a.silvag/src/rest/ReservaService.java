@@ -324,14 +324,19 @@ public class ReservaService {
 	}
 	
 	@POST
-	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("RF7")
 	public Response RF7(LinkedHashMap<String, Object> mapa) {
 		try {
-			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			System.out.println(0);
+AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			System.out.println(1);
 			tm.RF7(mapa);
+			System.out.println(2);
+
 			return Response.status(200).entity("").build();
+			
 			
 		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
