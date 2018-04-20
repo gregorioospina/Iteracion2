@@ -48,6 +48,7 @@ public class DAOReserva {
 	 */
 	public DAOReserva() {
 		recursos = new ArrayList<Object>();
+		recursos2 = new ArrayList<Object>();
 	}
 
 	////////////////////////////////////////
@@ -67,9 +68,10 @@ public class DAOReserva {
 	 *             Si se genera un error dentro del metodo.
 	 */
 	public ArrayList<Reserva> getReserva() throws SQLException, Exception {
+		System.out.println("getReservadao");
 		ArrayList<Reserva> reservas = new ArrayList<>();
 		String sq1 = String.format("SELECT * FROM %s.RESERVAS", USUARIO);
-
+		System.out.println(sq1);
 		PreparedStatement prepStmt = conn.prepareStatement(sq1);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
@@ -438,16 +440,20 @@ public class DAOReserva {
 	////////////////////////////////
 
 	public Reserva convertResultToReserva(ResultSet resultSet) throws SQLException {
+		System.out.println("convertResultSetToReserva");
 		Long idReserva = resultSet.getLong("ID_RESERVA");
 		Long codigoUsuario = resultSet.getLong("CODIGOUNIANDINO");
 		Long idHabitacion = resultSet.getLong("ID_HABITACION");
 		Long idOperador = resultSet.getLong("ID_OPERADOR");
+		System.out.println("ckpoint1");
 		Double precio = resultSet.getDouble("PRECIO");
 		Boolean cancelado = resultSet.getBoolean("CANCELADO");
+		System.out.println("ckpoint2");
 		Date fechaInicial = resultSet.getDate("FECHA_INICIAL");
+		System.out.println("ckpointDate");
 		Date fechaFinal = resultSet.getDate("FECHA_FINAL");
 		Date horaCreacion = resultSet.getDate("HORA_CREACION");
-
+		System.out.println("ckpointDate2");
 		Reserva reserva = new Reserva(idReserva, codigoUsuario, idOperador, cancelado, precio, idHabitacion,
 				fechaInicial, fechaFinal, horaCreacion);
 

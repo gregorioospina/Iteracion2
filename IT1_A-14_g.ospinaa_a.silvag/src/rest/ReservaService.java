@@ -93,12 +93,13 @@ public class ReservaService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getReservas() {
-
+System.out.println("Entro al get");
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-
+			System.out.println("tm1");
 			List<Reserva> reservas;
 			reservas = tm.getAllReservas();
+			System.out.println("tm2");
 			return Response.status(200).entity(reservas).build();
 		} catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
@@ -330,7 +331,7 @@ public class ReservaService {
 		try {
 			
 			System.out.println(0);
-AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
 			System.out.println(1);
 			tm.RF7(mapa);
 			System.out.println(2);

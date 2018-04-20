@@ -365,15 +365,17 @@ public class AlohaTransactionManager {
 		 * @throws Exception -  Cualquier error que se genere durante la transaccion
 		 */
 		public List<Reserva> getAllReservas() throws Exception {
+			System.out.println("reservatmgetall1");
 			DAOReserva daoReserva = new DAOReserva();
 			List<Reserva> reservas;
 			try 
 			{
 				this.conn = darConexion();
 				daoReserva.setConn(conn);
-				
+				System.out.println("try1reservatmgetall");
 				//Por simplicidad, solamente se obtienen los primeros 50 resultados de la consulta
 				reservas = daoReserva.getReserva();
+				System.out.println("salio");
 			}
 			catch (SQLException sqlException) {
 				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
@@ -387,17 +389,23 @@ public class AlohaTransactionManager {
 			} 
 			finally {
 				try {
+					System.out.println("try2");
 					daoReserva.cerrarRecursos();
+					System.out.println("try3");
 					if(this.conn!=null){
-						this.conn.close();					
+						System.out.println("try4");
+						this.conn.close();	
+						System.out.println("try5");
 					}
 				}
 				catch (SQLException exception) {
+					System.out.println("error en catch");
 					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
 					exception.printStackTrace();
 					throw exception;
 				}
 			}
+			System.out.println("llego");
 			return reservas;
 		}
 		
@@ -527,7 +535,7 @@ public class AlohaTransactionManager {
 		}
 		
 		public void RF7(LinkedHashMap<String, Object> mapa)throws Exception{
-			
+			System.out.println("llego");
 			DAOReserva daoReserva = new DAOReserva();
 			DAOOperador daoOperador =new DAOOperador();
 			Statement s = conn.createStatement();
@@ -549,6 +557,7 @@ public class AlohaTransactionManager {
 				 * usuario : int
 				 * }
 				 */
+				System.out.println("brief");
 				Integer cantReservas = (Integer)mapa.get("cantidad");
 				String tipo = (String)mapa.get("tipo");
 				Date inicio = (Date)mapa.get("inicio");
