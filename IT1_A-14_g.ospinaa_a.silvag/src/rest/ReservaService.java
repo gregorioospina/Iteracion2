@@ -218,10 +218,8 @@ System.out.println("Entro al get");
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
-	@POST
+	@DELETE
 	@Path("RF8/{id: \\d+}")
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Consumes({ MediaType.APPLICATION_JSON })
 	public Response rf8(@PathParam("id") Long id) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());

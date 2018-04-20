@@ -301,13 +301,17 @@ public class DAOReserva {
 	}
 	
 	public void rf8(Long id) throws SQLException {
-		String sql = String.format("SELECT ID_RESERVA FROM RESERVAS_COLECTIVAS WHERE ID_COLECTIVO = %d", id);
+		String sql = String.format("SELECT ID_RESERVA FROM RESERVAS_COLECTIVAS WHERE ID_COLECTIVA = %d", id);
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 		while (rs.next()) {
 			cancelarReserva(convertResultToRF8(rs));
 		}
+		sql = String.format("DELETE FROM RESERVAS_COLECTIVAS WHERE ID_COLECTIVA = %d", id);
+		prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
 	}
 	
 	public void rf9(Long id) throws Exception{
