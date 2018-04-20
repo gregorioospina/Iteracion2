@@ -753,28 +753,28 @@ public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLExcepti
 	ArrayList<String> lista = (ArrayList<String>)mapa.get("servicios");
 	String sql = "";
 	if(buscar(lista, "amoblado")&&buscar(lista, "tv")&&buscar(lista, "internet")) {
-		sql = String.format("SELECT ID_OPERADOR\r\n" + 
-				"FROM APARTAMENTO\r\n" + 
-				"MINUS\r\n" + 
-				"SELECT ID_OPERADOR\r\n" + 
-				"FROM RESERVAS\r\n" + 
+		sql = String.format("SELECT ID_OPERADOR " + 
+				"FROM APARTAMENTO " + 
+				"MINUS " + 
+				"SELECT ID_OPERADOR " + 
+				"FROM RESERVAS " + 
 				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
 	}else if(buscar(lista, "restaurante")&&buscar(lista, "piscina")&&buscar(lista, "parqueadero")&&buscar(lista, "wifi")&&buscar(lista, "tvcable")) {
 		//HOTEL
-		sql = String.format("SELECT ID_OPERADOR\r\n" + 
-				"FROM HOTEL\r\n" + 
-				"MINUS\r\n" + 
-				"SELECT ID_OPERADOR\r\n" + 
-				"FROM RESERVAS\r\n" + 
+		sql = String.format("SELECT ID_OPERADOR " + 
+				"FROM HOTEL " + 
+				"MINUS " + 
+				"SELECT ID_OPERADOR " + 
+				"FROM RESERVAS " + 
 				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
 	
 	}else if(buscar(lista, "salas de estudio")&&buscar(lista, "restaurante")&&buscar(lista, "gimnasio")) {
 		//viviendauni
-		sql = String.format("SELECT ID_OPERADOR\r\n" + 
-				"FROM VIVIENDAUNI\r\n" + 
-				"MINUS\r\n" + 
-				"SELECT ID_OPERADOR\r\n" + 
-				"FROM RESERVAS\r\n" + 
+		sql = String.format("SELECT ID_OPERADOR " + 
+				"FROM VIVIENDAUNI " + 
+				"MINUS " + 
+				"SELECT ID_OPERADOR " + 
+				"FROM RESERVAS " + 
 				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
 	
 	}
@@ -788,7 +788,7 @@ public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLExcepti
 	return respu;
 }
 
-public ArrayList<RFC4> RFC4(String tipo,Date inicio, Date finale) throws SQLException{
+public ArrayList<RFC4> RFC4(String tipo,String inicio, String finale) throws SQLException{
 	ArrayList<RFC4> respu = new ArrayList<>();
 	String sql = "";
 	if(tipo.equalsIgnoreCase("apartamento")) {
@@ -797,7 +797,7 @@ public ArrayList<RFC4> RFC4(String tipo,Date inicio, Date finale) throws SQLExce
 				"MINUS\r\n" + 
 				"SELECT ID_OPERADOR\r\n" + 
 				"FROM RESERVAS\r\n" + 
-				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+				"WHERE FECHA_INICIAL<TO_DATE('%1$s','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$s','YYYY-MM-DD')",finale,inicio);
 	}else if(tipo.equalsIgnoreCase("hotel")||tipo.equalsIgnoreCase("hostal")) {
 		//HOTEL
 		sql = String.format("SELECT ID_OPERADOR\r\n" + 
@@ -805,7 +805,7 @@ public ArrayList<RFC4> RFC4(String tipo,Date inicio, Date finale) throws SQLExce
 				"MINUS\r\n" + 
 				"SELECT ID_OPERADOR\r\n" + 
 				"FROM RESERVAS\r\n" + 
-				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+				"WHERE FECHA_INICIAL<TO_DATE('%1$s','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$s','YYYY-MM-DD')",finale,inicio);
 	
 	}else if(tipo.equalsIgnoreCase("vivienda")) {
 		//viviendauni
@@ -814,16 +814,19 @@ public ArrayList<RFC4> RFC4(String tipo,Date inicio, Date finale) throws SQLExce
 				"MINUS\r\n" + 
 				"SELECT ID_OPERADOR\r\n" + 
 				"FROM RESERVAS\r\n" + 
-				"WHERE FECHA_INICIAL<TO_DATE('%1$tf','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$tf','YYYY-MM-DD')",finale,inicio);
+				"WHERE FECHA_INICIAL<TO_DATE('%1$s','YYYY-MM-DD') AND FECHA_FINAL>TO_DATE('%2$s','YYYY-MM-DD')",finale,inicio);
 	
 	}
+	System.out.println(sql);
 	PreparedStatement prepstmt = conn.prepareStatement(sql);
 	recursos.add(prepstmt);
 	ResultSet rs = prepstmt.executeQuery();
 	while(rs.next()) {
+		System.out.println("Convert");
 		respu.add(convertResultToRFC4(rs));
 	}
 	System.out.println(respu);
+	System.out.println("operador" + respu.get(0).getOperador());
 	return respu;
 }
 

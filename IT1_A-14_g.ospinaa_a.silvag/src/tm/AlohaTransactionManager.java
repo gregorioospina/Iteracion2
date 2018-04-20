@@ -538,12 +538,16 @@ public class AlohaTransactionManager {
 			System.out.println("llego");
 			DAOReserva daoReserva = new DAOReserva();
 			DAOOperador daoOperador =new DAOOperador();
-			Statement s = conn.createStatement();
+			
 			
 			
 			try
 			{
 				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				System.out.println("tryCheckpoint");
+				
+				Statement s = conn.createStatement();
 				daoReserva.setConn(conn);
 				conn.setAutoCommit(false);
 				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
@@ -560,8 +564,11 @@ public class AlohaTransactionManager {
 				System.out.println("brief");
 				Integer cantReservas = (Integer)mapa.get("cantidad");
 				String tipo = (String)mapa.get("tipo");
-				Date inicio = (Date)mapa.get("inicio");
-				Date finale = (Date)mapa.get("final");
+				System.out.println("chckpoint1");
+				String inicio = (String)mapa.get("inicio");
+				System.out.println("chckpointDate");
+				String finale = (String)mapa.get("final");
+				System.out.println("chckpointDate2");
 				Integer identificador = (Integer)mapa.get("identificador");
 				Integer usuario = (Integer)mapa.get("usuario");
 				String sql = ""; 
@@ -573,14 +580,17 @@ public class AlohaTransactionManager {
 				for (int i = 0; i < cantReservas; i++) {
 					sql = String.format("INSERT INTO RESERVAS_COLECTIVAS values (%1$d,%2$d)", identificador*i+10000,identificador);
 					s.addBatch(sql);
+					System.out.println(sql);
 					sql = String.format(
-							"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, FECHA_INICIAL, FECHA_FINAL, HORA_CREACION) VALUES (%2$d, %3$d, %4$d, '%5$c', %6$f, TO_DATE('%7$tF', 'YYYY-MM-DD'), TO_DATE('%8$tF', 'YYYY-MM-DD'), CURRENT_TIMESTAMP)",
-							USUARIO, identificador*i+10000, usuario, lista.get(i), '0',
+							"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, FECHA_INICIAL, FECHA_FINAL, HORA_CREACION) VALUES (%2$d, %3$d, %4$d, '%5$c', %6$d, TO_DATE('%7$s', 'YYYY-MM-DD'), TO_DATE('%8$s', 'YYYY-MM-DD'), CURRENT_TIMESTAMP)",
+							USUARIO, identificador*i+10000, usuario, lista.get(i).getOperador(), '0',
 							0,  inicio, finale);
 					s.addBatch(sql);
 				}
 				s.executeBatch();
+				
 				conn.commit();
+				s.close();
 			}
 			
 			catch (SQLException sqlException) {
@@ -597,7 +607,7 @@ public class AlohaTransactionManager {
 				try {
 					daoReserva.cerrarRecursos();
 					daoOperador.cerrarRecursos();
-					s.close();
+					
 					if(this.conn!=null){
 						this.conn.close();					
 					}
@@ -1709,7 +1719,10 @@ public class AlohaTransactionManager {
 			}	
 		}
 		
-		
+		public Date stringToDate(String s) {
+			String cuerdas[]=s.split("-");
+			return new Date(Integer.parseInt(cuerdas[0]), Integer.parseInt(cuerdas[1]), Integer.parseInt(cuerdas[2]));
+		}
 		
 		
 
