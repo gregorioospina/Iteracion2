@@ -739,6 +739,23 @@ public class DAOOperador {
 		}
 	}
 	
+/////////////////////////////////Requerimientos funcionales//////////////////////////////
+	public ArrayList<RFC3> RFC3()throws SQLException,Exception{
+		ArrayList<RFC3> respu = new ArrayList<>();
+		
+		String sql = "SELECT OCUPACION/CUPO as indice, id_operador from operadores";
+		PreparedStatement prepstmt = conn.prepareStatement(sql);
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+	
+		while (rs.next()) {
+			respu.add(convertResultToRFC3(rs));
+		}
+		System.out.println(respu);
+		return respu;
+		
+	}
+
 public ArrayList<RFC4> RFC4(LinkedHashMap<String,Object> mapa) throws SQLException{
 	/*
 	 * {
@@ -829,6 +846,13 @@ public ArrayList<RFC4> RFC4(String tipo,String inicio, String finale) throws SQL
 	return respu;
 }
 
+public void RF10(Long id)throws SQLException{
+	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE ID_OPERADOR = %d", id);
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	prepstmt.executeQuery();
+}
+
 public boolean buscar(ArrayList<String> lista, String s1) {
 	for(String s:lista) {
 		if (s.equalsIgnoreCase(s1)){
@@ -836,29 +860,6 @@ public boolean buscar(ArrayList<String> lista, String s1) {
 		}
 	}
 	return false;
-}
-
-/////////////////////////////////Requerimientos funcionales//////////////////////////////
-public ArrayList<RFC3> RFC3()throws SQLException,Exception{
-	ArrayList<RFC3> respu = new ArrayList<>();
-	
-	String sql = "SELECT OCUPACION/CUPO as indice, id_operador from operadores";
-	PreparedStatement prepstmt = conn.prepareStatement(sql);
-	recursos.add(prepstmt);
-	ResultSet rs = prepstmt.executeQuery();
-
-	while (rs.next()) {
-		respu.add(convertResultToRFC3(rs));
-	}
-	System.out.println(respu);
-	return respu;
-	
-}
-public void RF10(Long id)throws SQLException{
-	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE ID_OPERADOR = %d", id);
-	PreparedStatement prepstmt = conn.prepareStatement(sql);
-	recursos.add(prepstmt);
-	prepstmt.executeQuery();
 }
 
 public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{

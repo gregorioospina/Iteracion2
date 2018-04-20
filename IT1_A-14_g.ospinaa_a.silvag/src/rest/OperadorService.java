@@ -209,12 +209,14 @@ public class OperadorService {
 	}
 	
 	@GET
-	@Path("RF10/{id: \\d+}")
-	public Response RF10(@PathParam("id") Long id) {
+	@Path("RFC3")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response RFC3() {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			tm.RF10(id);
-			return Response.status(200).entity("todo bien").build();
+			List<RFC3> rff4s = tm.RFC3();
+			return Response.status(200).entity(rff4s).build();
+			
 		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
@@ -234,20 +236,19 @@ public class OperadorService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+
 	@GET
-	@Path("RFC3")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response RFC3() {
+	@Path("RF10/{id: \\d+}")
+	public Response RF10(@PathParam("id") Long id) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			List<RFC3> rff4s = tm.RFC3();
-			return Response.status(200).entity(rff4s).build();
-			
+			tm.RF10(id);
+			return Response.status(200).entity("todo bien").build();
 		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
-	
+
 	@POST
 	@Path("{tipo}/{id: \\d+}")
 	@Produces({ MediaType.APPLICATION_JSON })

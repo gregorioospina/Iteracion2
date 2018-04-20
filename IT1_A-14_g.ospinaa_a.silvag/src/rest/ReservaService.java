@@ -218,33 +218,6 @@ System.out.println("Entro al get");
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
-	@DELETE
-	@Path("RF8/{id: \\d+}")
-	public Response rf8(@PathParam("id") Long id) {
-		try {
-			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			
-			tm.RF8(id);
-			return Response.status(200).entity("cancelada").build();
-		} catch (Exception e) {
-			return Response.status(500).entity(doErrorMessage(e)).build();
-		}
-	}
-	
-	@GET
-	@Path("RF9/{id:\\d+}")
-	public Response RF9(@PathParam("id")Long id) {
-		try {
-			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			
-			tm.RF9(id);
-			return Response.status(200).entity("cancelada").build();
-		} catch (Exception e) {
-			return Response.status(500).entity(doErrorMessage(e)).build();
-		}
-	}
-	
-
 	/**
 	 * Metodo que borra un usuario y comenta sobre los casos de error.
 	 * 
@@ -342,6 +315,32 @@ System.out.println("Entro al get");
 		}
 	}
 	
+	@DELETE
+	@Path("RF8/{id: \\d+}")
+	public Response RF8(@PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.RF8(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+
+	@GET
+	@Path("RF9/{id:\\d+}")
+	public Response RF9(@PathParam("id")Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			
+			tm.RF9(id);
+			return Response.status(200).entity("cancelada").build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})

@@ -533,7 +533,205 @@ public class AlohaTransactionManager {
 			
 			
 		}
+
+		public List<RFC6> RFC6(Long usuario) throws Exception {
+			ArrayList<RFC6> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC6(usuario);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
+		}
 		
+		/**
+		 * RFC2
+		 * @return lista con 20 ofertas mas solicitadas.
+		 * @throws Exception
+		 */
+		public List<RFC1> RFC1() throws Exception
+		{
+			ArrayList<RFC1> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC1();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+		
+		/**
+		 * RFC2
+		 * @return lista con 20 ofertas mas solicitadas.
+		 * @throws Exception
+		 */
+		public List<RFC2> RFC2() throws Exception
+		{
+			ArrayList<RFC2> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC2();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+
+		public List<RFC3> RFC3() throws Exception{
+			ArrayList<RFC3> respu = new ArrayList<>();
+			DAOOperador daoReserva = new DAOOperador();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC3();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+
+		public List<RFC4> RFC4(LinkedHashMap<String, Object> mapa) throws SQLException{
+			ArrayList<RFC4> respu = new ArrayList<>();
+			DAOOperador daoOperador = new DAOOperador();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				respu = daoOperador.RFC4(mapa);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+
 		public void RF7(LinkedHashMap<String, Object> mapa)throws Exception{
 			System.out.println("llego");
 			DAOReserva daoReserva = new DAOReserva();
@@ -620,18 +818,99 @@ public class AlohaTransactionManager {
 				}
 			}
 		}
-		
-		public List<RFC4> RFC4(LinkedHashMap<String, Object> mapa) throws SQLException{
-			ArrayList<RFC4> respu = new ArrayList<>();
-			DAOOperador daoOperador = new DAOOperador();
-			
+
+		public void RF8(Long id) throws SQLException, Exception {
+			DAOReserva daoReserva = new DAOReserva( );
 			try
 			{
 				this.conn = darConexion();
-				daoOperador.setConn(conn);
-				respu = daoOperador.RFC4(mapa);
+				daoReserva.setConn( conn );
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+				
+				daoReserva.rf8(id);		
+				
+				conn.commit();
+		
 			}
-			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+
+		public void RF9(Long id) throws SQLException, Exception {
+			DAOReserva daoReserva = new DAOReserva( );
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn( conn );
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+								
+				daoReserva.rf9(id);	
+				
+				conn.commit();
+		
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+
+		public void RF10(Long id)throws SQLException, Exception {
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn( conn );
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+					
+				daoOperador.RF10(id);
+				
+				conn.commit();
+		
+			}
 			catch (SQLException sqlException) {
 				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
 				sqlException.printStackTrace();
@@ -654,171 +933,9 @@ public class AlohaTransactionManager {
 					exception.printStackTrace();
 					throw exception;
 				}
-			}
-			return respu;
+			}	
 		}
-		
-		public List<RFC6> RFC6(Long usuario) throws Exception {
-			ArrayList<RFC6> respu = new ArrayList<>();
-			DAOReserva daoReserva = new DAOReserva();
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn(conn);
-				respu = daoReserva.RFC6(usuario);
-			}
-			
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}
-			return respu;
-			
-			
-		}
-		
-		/**
-		 * RFC2
-		 * @return lista con 20 ofertas mas solicitadas.
-		 * @throws Exception
-		 */
-		public List<RFC2> RFC2() throws Exception
-		{
-			ArrayList<RFC2> respu = new ArrayList<>();
-			DAOReserva daoReserva = new DAOReserva();
-			
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn(conn);
-				respu = daoReserva.RFC2();
-			}
-			
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}
-			return respu;
-		}
-		
-		public List<RFC3> RFC3() throws Exception{
-			ArrayList<RFC3> respu = new ArrayList<>();
-			DAOOperador daoReserva = new DAOOperador();
-			
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn(conn);
-				respu = daoReserva.RFC3();
-			}
-			
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}
-			return respu;
-		}
-		
-		/**
-		 * RFC2
-		 * @return lista con 20 ofertas mas solicitadas.
-		 * @throws Exception
-		 */
-		public List<RFC1> RFC1() throws Exception
-		{
-			ArrayList<RFC1> respu = new ArrayList<>();
-			DAOReserva daoReserva = new DAOReserva();
-			
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn(conn);
-				respu = daoReserva.RFC1();
-			}
-			
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}
-			return respu;
-		}
-		
+
 		/**
 		 * Metodo que modela la transaccion que agrega un reserva a la base de datos. <br/>
 		 * <b> post: </b> se ha agregado el reserva que entra como parametro <br/>
@@ -907,123 +1024,6 @@ public class AlohaTransactionManager {
 			}	
 		}
 		
-		
-		public void RF8(Long id) throws SQLException, Exception {
-			DAOReserva daoReserva = new DAOReserva( );
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn( conn );
-				conn.setAutoCommit(false);
-				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-				
-				daoReserva.rf8(id);		
-				
-				conn.commit();
-
-			}
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}	
-		}
-		
-		public void RF9(Long id) throws SQLException, Exception {
-			DAOReserva daoReserva = new DAOReserva( );
-			try
-			{
-				this.conn = darConexion();
-				daoReserva.setConn( conn );
-				conn.setAutoCommit(false);
-				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-								
-				daoReserva.rf9(id);	
-				
-				conn.commit();
-
-			}
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoReserva.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}	
-		}
-		
-		public void RF10(Long id)throws SQLException, Exception {
-			DAOOperador daoOperador = new DAOOperador( );
-			try
-			{
-				this.conn = darConexion();
-				daoOperador.setConn( conn );
-				conn.setAutoCommit(false);
-				conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-					
-				daoOperador.RF10(id);
-				
-				conn.commit();
-
-			}
-			catch (SQLException sqlException) {
-				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
-				sqlException.printStackTrace();
-				throw sqlException;
-			} 
-			catch (Exception exception) {
-				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
-				exception.printStackTrace();
-				throw exception;
-			} 
-			finally {
-				try {
-					daoOperador.cerrarRecursos();
-					if(this.conn!=null){
-						this.conn.close();					
-					}
-				}
-				catch (SQLException exception) {
-					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
-					exception.printStackTrace();
-					throw exception;
-				}
-			}	
-		}
 		
 		public void cancelarReserva(Long id) throws SQLException, Exception {
 			DAOReserva daoReserva = new DAOReserva( );

@@ -333,6 +333,27 @@ public class DAOReserva {
 		
 	}
 
+	public String RFC9(Long codigo) throws SQLException, Exception
+	{
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
+		sql.append(String.format(" FROM %s.reservas re",USUARIO));
+		sql.append(String.format(" WHERE id_operador = %d", codigo));
+		sql.append(" ORDER BY re.FECHA_FINAL");
+	
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		
+		return megaR9(rs);
+		
+	}
+
 	/**
 	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene
 	 * el identificador dado por parametro<br/>
@@ -357,27 +378,6 @@ public class DAOReserva {
 	}
 	
 
-	public String RFC9(Long codigo) throws SQLException, Exception
-	{
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
-		sql.append(String.format(" FROM %s.reservas re",USUARIO));
-		sql.append(String.format(" WHERE id_operador = %d", codigo));
-		sql.append(" ORDER BY re.FECHA_FINAL");
-
-		
-		System.out.println(sql);
-		
-		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepstmt);
-		ResultSet rs = prepstmt.executeQuery();	
-		
-		
-		return megaR9(rs);
-		
-	}
-	
 	private String megaR9(ResultSet rs) throws SQLException
 	{
 		Date fechaMenor = new Date();
