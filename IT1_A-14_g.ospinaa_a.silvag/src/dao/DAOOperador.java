@@ -856,7 +856,7 @@ public ArrayList<RFC3> RFC3()throws SQLException,Exception{
 	
 }
 public void RF10(Long id)throws SQLException{
-	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE ID_OPERADOR = %d", id);
 	PreparedStatement prepstmt = conn.prepareStatement(sql);
 	recursos.add(prepstmt);
 	prepstmt.executeQuery();
