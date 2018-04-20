@@ -307,6 +307,25 @@ public class DAOReserva {
 			cancelarReserva(convertResultToRF8(rs));
 		}
 	}
+	
+	public void rf9(Long id) throws Exception{
+		String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+		
+		sql = String.format("SELECT *\r\n" + 
+				"FROM Reservas \r\n" + 
+				"where ID_OPERADOR = %d AND FECHA_INICIAL>CURRENT_DATE AND CANCELADO = '0'" , id);
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+		while (rs.next()) {
+			cancelarReserva(convertResultToRF8(rs));
+			Reserva reservaTemp = convertResultToReserva(rs);
+			reservaTemp.setIdReserva(reservaTemp.getIdReserva()+10000);
+			addReserva(reservaTemp);
+		}
+		
+		
+	}
 
 	/**
 	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene
@@ -330,6 +349,90 @@ public class DAOReserva {
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
 	}
+	
+
+	public String RFC9(Long codigo) throws SQLException, Exception
+	{
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
+		sql.append(String.format(" FROM %s.reservas re",USUARIO));
+		sql.append(String.format(" WHERE id_operador = %d", codigo));
+		sql.append(" ORDER BY re.FECHA_FINAL");
+
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		
+		return megaR9(rs);
+		
+	}
+	
+	private String megaR9(ResultSet rs) throws SQLException
+	{
+		Date fechaMenor = new Date();
+		Date fechaMayor = new Date();
+		Date fechaPrecio = new Date();
+		rs.next();
+		Date fechaBase = rs.getDate("FECHA");
+		
+		int mayor = 0;
+		int menor = Integer.MAX_VALUE;
+		Double precio = 0.0;
+		
+		while(rs.next())
+		{
+			int tiempos = 0;
+			Double precioT = 0.0;
+			
+			while (aDia(fechaBase)-aDia(rs.getDate("FECHA")) < 31)
+			{
+				tiempos++;
+				precioT += rs.getDouble("PRECIO");
+				rs.next();
+			}
+			
+			if(tiempos < menor)
+			{
+				menor = tiempos;
+				fechaMenor = fechaBase;
+			}
+			if(tiempos>mayor)
+			{
+				mayor = tiempos;
+				fechaMayor = fechaBase;
+			}
+			if(precioT > precio)
+			{
+				precio = precioT;
+				fechaPrecio = fechaBase;
+			}
+			
+			fechaBase = rs.getDate("FECHA");
+			
+		}
+		StringBuilder respu = new StringBuilder();
+		respu.append("El mes que mas ganancias monetarias trajo empezo en " + fechaPrecio.toString() + "\n");
+		respu.append("El mes en el que mas reservas hubo empezo en " + fechaMayor.toString() + "\n");
+		respu.append("El mes en el que menos reservas hubo empezo en " + fechaMenor.toString() + "\n");
+		
+		return respu.toString();
+				
+	}
+	
+	private Long aDia (Date date)
+	{
+		Long t = date.getTime();
+		Long respu = t/(1000*60*60*24);
+		
+		return respu;
+	}
+
+	
 	////////////////////////////////
 	////// METODOS AUXILIARES////////
 	////////////////////////////////

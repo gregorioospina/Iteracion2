@@ -207,6 +207,18 @@ public class OperadorService {
 		}
 	}
 	
+	@GET
+	@Path("RF10/{id: \\\\d+}")
+	public Response RF10(@PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			tm.RF10(id);
+			return Response.status(200).language("todo bien").build();
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
 	@PUT
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({ MediaType.APPLICATION_JSON })

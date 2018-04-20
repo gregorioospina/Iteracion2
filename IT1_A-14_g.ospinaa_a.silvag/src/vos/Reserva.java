@@ -45,6 +45,10 @@ public class Reserva {
 	@JsonProperty(value = "precio")
 	private Double precio;
 
+	public void setIdReserva(Long idReserva) {
+		this.idReserva = idReserva;
+	}
+
 	/**
 	 * Id unico de la reserva
 	 */

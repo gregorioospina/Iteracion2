@@ -28,18 +28,24 @@ public class Operador {
 	@JsonProperty(value="ocupacion")
 	private Integer ocupacion;
 	
+	@JsonProperty(value="habilitado")
+	private Boolean habilitado;
+	
 ////////////////////////////////////////////
 ////////////////CONSTRUCTOR/////////////////
 ////////////////////////////////////////////
 	
 	
+
+
+
 	/**
  * @param idOperador
  * @param cupoTotal
  * @param correo
  * @param nombre
  */
-public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty(value="cupoTotal") Integer cupoTotal, @JsonProperty(value="correo") String correo, @JsonProperty(value="nombre") String nombre, @JsonProperty(value="tipo") String tipo, @JsonProperty(value="ocupacion") Integer ocupacion) {
+public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty(value="cupoTotal") Integer cupoTotal, @JsonProperty(value="correo") String correo, @JsonProperty(value="nombre") String nombre, @JsonProperty(value="tipo") String tipo, @JsonProperty(value="ocupacion") Integer ocupacion, @JsonProperty(value="habilitado") Boolean habilitado) {
 	super();
 	this.idOperador = idOperador;
 	this.cupoTotal = cupoTotal;
@@ -47,6 +53,7 @@ public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty
 	this.nombre = nombre;
 	this.tipo = tipo;
 	this.ocupacion = ocupacion;
+	this.habilitado = habilitado;
 }
 
 
@@ -136,6 +143,15 @@ public Operador(@JsonProperty(value="idOperador") Long idOperador, @JsonProperty
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+
+
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 
 	

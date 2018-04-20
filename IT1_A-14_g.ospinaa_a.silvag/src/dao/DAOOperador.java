@@ -158,14 +158,15 @@ public class DAOOperador {
 	}
 	
 	public void addOperador(Operador operador) throws SQLException {
-		String sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+		String sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d, '%8$c')",
 				USUARIO,
 				operador.getIdOperador(),
 				operador.getCorreo(),
 				operador.getCupoTotal(),
 				operador.getNombre(),
 				operador.getTipo(),
-				operador.getOcupacion()
+				operador.getOcupacion(),
+				boolToInt(operador.getHabilitado())
 				);
 		System.out.println(sql);
 		
@@ -182,14 +183,15 @@ public class DAOOperador {
 		LinkedHashMap<String, Object> mapa = (LinkedHashMap<String, Object>)operador;
 		switch(tipo) {
 		case "APARTAMENTO": 
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= String.format("INSERT INTO %1$s.APARTAMENTO(ID_OPERADOR,AMOBLADO,PRECIO,SERVICIOPUBLICO,TV,INTERNET,ADMINISTRACION) VALUES(%2$d,'%3$c',%4$f,'%5$c','%6$c','%7$c','%8$c')", 
 					USUARIO,
@@ -203,14 +205,15 @@ public class DAOOperador {
 					);
 			break;
 		case "HOSTAL":
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$c','%4$c','%5$c','%6$c','%7$c',%8$d,'%9$s','%10$s')", 
 					USUARIO,
@@ -231,14 +234,15 @@ public class DAOOperador {
 					);
 			break;
 		case "PERSONANATURAL":
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= String.format("INSERT INTO %1$s.PERSONANATURAL(ID_OPERADOR,COSTO_SERVICIOS,BAÑO_COMPARTIDO) VALUES(%2$d,%3$f,'%4$c')", 
 					USUARIO,
@@ -247,14 +251,15 @@ public class DAOOperador {
 					boolToInt((Boolean)mapa.get("bahnoCompartido"))); 
 			break;
 		case "VIVIENDA":
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= String.format("INSERT INTO %1$s.VIVIENDA(ID_OPERADOR,MENAJE,DIAS_ALQUILADA,NUMERO_HABITACIONES,UBICACION,PRECIO,SEGURO) VALUES (%2$d,'%3$c',%4$d,%5$d,'%6$s',%7$f,'%8$s')",
 					USUARIO,
@@ -267,14 +272,15 @@ public class DAOOperador {
 					(String)mapa.get("seguro"));
 			break;
 		case "VIVIENDAUNI":
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= String.format("INSERT INTO %1$s.VIVIENDAUNI(ID_OPERADOR,SALAS_DE_ESTUDIO_COSTO,RESTAURANTE_COSTO,GIMNASIO_COSTO,UBICACION,CAPACIDAD) VALUES(%2$d, %3$f, %4$f, %5$f, '%6$s',%7$d)",
 					USUARIO,
@@ -286,14 +292,15 @@ public class DAOOperador {
 					(Integer)mapa.get("capacidad"));
 			break;
 		case "HOTEL":
-			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d)",
+			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO,OCUPACION, HABILITADO) VALUES(%2$d, '%3$s', %4$d, '%5$s','%6$s',%7$d,'%8$c')",
 					USUARIO,
 					Long.valueOf((Integer)mapa.get("idOperador")),
 					(String)mapa.get("correo"),
 					(Integer)mapa.get("cupoTotal"),
 					(String)mapa.get("nombre"),
 					(String)mapa.get("tipo"),
-					(Integer)mapa.get("ocupacion")
+					(Integer)mapa.get("ocupacion"),
+					boolToInt((Boolean)mapa.get("HABILITADO"))
 					);
 			sql2= 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$c','%4$c','%5$c','%6$c','%7$c',%8$d,'%9$s','%10$s')", 
 					USUARIO,
@@ -573,7 +580,8 @@ public class DAOOperador {
 		Integer cupoTotal = result.getInt("CUPO");
 		String tipo=result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
-		Operador operamela = new Operador(idOperador, cupoTotal, correo, nombre,tipo, ocupacion);
+		Boolean habilitado = result.getBoolean("HABILITADO");
+		Operador operamela = new Operador(idOperador, cupoTotal, correo, nombre,tipo, ocupacion, habilitado);
 		return operamela;
 	}
 	
@@ -590,7 +598,8 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
-		Vivienda viviendamela = new Vivienda(idOperador, cupoTotal, correo, nombre, tipo, ocupacion, numeroHabitaciones, ubicacion, menaje, precio, seguro, diasAlquilada);
+		Boolean habilitado = result.getBoolean("HABILITADO");
+		Vivienda viviendamela = new Vivienda(idOperador, cupoTotal, correo, nombre, tipo, ocupacion, habilitado, numeroHabitaciones, ubicacion, menaje, precio, seguro, diasAlquilada);
 		return viviendamela;
 	}
 	
@@ -603,7 +612,8 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
-		PersonaNatural personaNatural = new PersonaNatural(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, costoServicios, banhoCompartido);
+		Boolean habilitado = result.getBoolean("HABILITADO");
+		PersonaNatural personaNatural = new PersonaNatural(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, habilitado, costoServicios, banhoCompartido);
 		return personaNatural;
 	}
 	
@@ -613,6 +623,7 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
+		Boolean habilitado = result.getBoolean("HABILITADO");
 		Long idOperador = result.getLong("ID_OPERADOR");
 		Boolean restaurante = result.getBoolean("RESTAURANTE");
 		Boolean piscina = result.getBoolean("PISCINA");
@@ -621,7 +632,7 @@ public class DAOOperador {
 		Boolean tvCable = result.getBoolean("TVCABLE");
 		Long numRegistro = result.getLong("NUMREGISTROSDT");
 		String direccion = result.getString("DIRECCION");
-		Hotel hotelHostal = new Hotel(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, restaurante, piscina, parqueadero, wifi, tvCable, numRegistro, direccion);
+		Hotel hotelHostal = new Hotel(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, habilitado,restaurante, piscina, parqueadero, wifi, tvCable, numRegistro, direccion);
 		return hotelHostal;
 	}
 	
@@ -631,6 +642,7 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
+		Boolean habilitado = result.getBoolean("HABILITADO");
 		Long idOperador = result.getLong("ID_OPERADOR");
 		Boolean restaurante = result.getBoolean("RESTAURANTE");
 		Boolean piscina = result.getBoolean("PISCINA");
@@ -641,7 +653,7 @@ public class DAOOperador {
 		String direccion = result.getString("DIRECCION");
 		Integer horaCierra = result.getInt("HORACIERRE");
 		Integer horaApertura = result.getInt("HORAAPERTURA");
-		Hostal hostal = new Hostal(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, restaurante, piscina, parqueadero, wifi, tvCable, horaApertura, horaCierra, numRegistro, direccion);
+		Hostal hostal = new Hostal(idOperador, cupoTotal, correo, nombre, tipo,ocupacion,habilitado, restaurante, piscina, parqueadero, wifi, tvCable, horaApertura, horaCierra, numRegistro, direccion);
 		return hostal;
 	}
 	
@@ -651,6 +663,7 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
+		Boolean habilitado = result.getBoolean("HABILITADO");
 		Long idOperador = result.getLong("ID_OPERADOR");
 		Boolean amoblado = result.getBoolean("AMOBLADO");
 		Double precio = result.getDouble("PRECIO");
@@ -658,7 +671,7 @@ public class DAOOperador {
 		Boolean tv = result.getBoolean("TV");
 		Boolean internet = result.getBoolean("INTERNET");
 		Boolean administracion = result.getBoolean("ADMINISTRACION");
-		Apartamento apartamento = new Apartamento(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, amoblado, servicioPublico, administracion, tv, internet, precio);
+		Apartamento apartamento = new Apartamento(idOperador, cupoTotal, correo, nombre, tipo,ocupacion, habilitado, amoblado, servicioPublico, administracion, tv, internet, precio);
 		return apartamento;
 	}
 	
@@ -668,13 +681,14 @@ public class DAOOperador {
 		String nombre = result.getString("NOMBRE");
 		String tipo = result.getString("TIPO");
 		Integer ocupacion = result.getInt("OCUPACION");
+		Boolean habilitado = result.getBoolean("HABILITADO");
 		Long idOperador = result.getLong("ID_OPERADOR");
 		Double salaDeEstudioCosto = result.getDouble("SALAS_DE_ESTUDIO_COSTO");
 		Double restauranteCosto = result.getDouble("RESTAURANTE_COSTO");
 		Double gimnasioCosto= result.getDouble("RESTAURANTE_COSTO");
 		String ubicacion = result.getString("UBICACION");
 		Short capacidad = result.getShort("CAPACIDAD");
-		ViviendaUni viendeamela = new ViviendaUni(idOperador, cupoTotal, correo, nombre, tipo, ocupacion,salaDeEstudioCosto, restauranteCosto, gimnasioCosto, ubicacion, capacidad);
+		ViviendaUni viendeamela = new ViviendaUni(idOperador, cupoTotal, correo, nombre, tipo, ocupacion, habilitado,salaDeEstudioCosto, restauranteCosto, gimnasioCosto, ubicacion, capacidad);
 		return viendeamela;
 		
 	}
@@ -837,6 +851,12 @@ public ArrayList<RFC3> RFC3()throws SQLException,Exception{
 	System.out.println(respu);
 	return respu;
 	
+}
+public void RF10(Long id)throws SQLException{
+	String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	prepstmt.executeQuery();
 }
 
 public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{
