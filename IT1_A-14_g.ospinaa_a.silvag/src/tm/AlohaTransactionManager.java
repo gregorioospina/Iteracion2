@@ -496,14 +496,52 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
-		public String RFC9(Long usuario) throws Exception {
+		public String RFC7(Long usuario) throws Exception {
 			String respu = "";
 			DAOReserva daoReserva = new DAOReserva();
 			try
 			{
 				this.conn = darConexion();
 				daoReserva.setConn(conn);
-				respu = daoReserva.RFC9(usuario);
+				respu = daoReserva.RFC7(usuario);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
+		}
+		
+		public ArrayList<RFC8> RFC8 (Long operador) throws Exception {
+			ArrayList<RFC8> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC8(operador);
 			}
 			
 			catch (SQLException sqlException) {

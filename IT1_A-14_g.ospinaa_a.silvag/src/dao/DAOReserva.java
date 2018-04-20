@@ -333,27 +333,7 @@ public class DAOReserva {
 		
 	}
 
-	public String RFC9(Long codigo) throws SQLException, Exception
-	{
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
-		sql.append(String.format(" FROM %s.reservas re",USUARIO));
-		sql.append(String.format(" WHERE id_operador = %d", codigo));
-		sql.append(" ORDER BY re.FECHA_FINAL");
 	
-		
-		System.out.println(sql);
-		
-		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepstmt);
-		ResultSet rs = prepstmt.executeQuery();	
-		
-		
-		return megaR9(rs);
-		
-	}
-
 	/**
 	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene
 	 * el identificador dado por parametro<br/>
@@ -378,28 +358,83 @@ public class DAOReserva {
 	}
 	
 
-	private String megaR9(ResultSet rs) throws SQLException
+	public ArrayList<RFC8> RFC8(Long operador) throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT us.codigo, us.correo, us.nombre");
+		sql.append(String.format(" FROM %1$s.usuarios us INNER JOIN %1$s.reservas re",USUARIO));
+		sql.append(" ON us.codigo = re.codigouniandino");
+		sql.append(" HAVING COUNT(us.codigo) > 3 OR SUM(fecha_final-fecha_inicial) > 15");
+		sql.append(" GROUP BY us.codigo, us.correo, us.nombre");
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC8> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC8(rs));
+		}
+		
+		return respu;
+		
+	}
+	
+
+	public String RFC7(Long codigo) throws SQLException, Exception
+	{
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
+		sql.append(String.format(" FROM %s.reservas re",USUARIO));
+		sql.append(String.format(" WHERE id_operador = %d", codigo));
+		sql.append(" ORDER BY re.FECHA_FINAL");
+
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC7> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC7(rs));
+		}
+		
+		return megaRFC7(respu);
+		
+	}
+	
+	private String megaRFC7(ArrayList<RFC7> rs) throws SQLException
 	{
 		Date fechaMenor = new Date();
 		Date fechaMayor = new Date();
 		Date fechaPrecio = new Date();
-		rs.next();
-		Date fechaBase = rs.getDate("FECHA");
+	
+		System.out.println("bien");
+		Date fechaBase = rs.get(0).getFecha();
 		
 		int mayor = 0;
 		int menor = Integer.MAX_VALUE;
 		Double precio = 0.0;
 		
-		while(rs.next())
+		System.out.println("bien2");
+
+		for(int i = 0; i < rs.size(); i++)
 		{
 			int tiempos = 0;
 			Double precioT = 0.0;
 			
-			while (aDia(fechaBase)-aDia(rs.getDate("FECHA")) < 31)
+			while (aDia(fechaBase)-aDia(rs.get(i).getFecha()) < 31 && i<rs.size()-1)
 			{
 				tiempos++;
-				precioT += rs.getDouble("PRECIO");
-				rs.next();
+				precioT += rs.get(i).getPrecio();
+				i++;
 			}
 			
 			if(tiempos < menor)
@@ -418,13 +453,16 @@ public class DAOReserva {
 				fechaPrecio = fechaBase;
 			}
 			
-			fechaBase = rs.getDate("FECHA");
+			System.out.println("bien5");
+			fechaBase = rs.get(i).getFecha();
+			System.out.println("bien6");
+
 			
 		}
 		StringBuilder respu = new StringBuilder();
-		respu.append("El mes que mas ganancias monetarias trajo empezo en " + fechaPrecio.toString() + "\n");
-		respu.append("El mes en el que mas reservas hubo empezo en " + fechaMayor.toString() + "\n");
-		respu.append("El mes en el que menos reservas hubo empezo en " + fechaMenor.toString() + "\n");
+		respu.append("El mes que mas ganancias monetarias trajo empezo en " + fechaPrecio.toString() + "\n \n");
+		respu.append("El mes en el que mas reservas hubo empezo en " + fechaMayor.toString() + "\n \n");
+		respu.append("El mes en el que menos reservas hubo empezo en " + fechaMenor.toString() + "\n \n");
 		
 		return respu.toString();
 				
@@ -437,6 +475,7 @@ public class DAOReserva {
 		
 		return respu;
 	}
+
 
 	
 	////////////////////////////////
@@ -481,6 +520,26 @@ public class DAOReserva {
 		Integer operador = resultSet.getInt("ID_OPERADOR");
 		return new RFC2(operador, habitacion);
 	}
+	
+
+	public RFC7 convertResultToRFC7(ResultSet rs) throws SQLException
+	{
+		Double precio = rs.getDouble("PRECIO");
+		Date fecha = rs.getDate("FECHA");
+		Long reserva = rs.getLong("RESERVA");
+		
+		return new RFC7(precio, fecha, reserva);
+	}
+	
+	public RFC8 convertResultToRFC8(ResultSet rs) throws SQLException
+	{
+		Long codigo = rs.getLong("CODIGO");
+		String correo = rs.getString("CORREO");
+		String nombre = rs.getString("NOMBRE");
+		
+		return new RFC8(codigo,correo,nombre);
+	}
+	
 	
 	public Long convertResultToRF8(ResultSet resultSet)throws SQLException{
 		return resultSet.getLong("ID_RESERVA");

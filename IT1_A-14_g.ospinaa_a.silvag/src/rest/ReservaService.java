@@ -344,17 +344,30 @@ System.out.println("Entro al get");
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
-	@Path("RFC9/{usuario: \\d+}")
-	public Response RFC9(@PathParam("usuario") Long usuario) {
+	@Path("RFC7/{usuario: \\d+}")
+	public Response RFC7(@PathParam("usuario") Long usuario) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
-			return Response.status(200).entity(tm.RFC9(usuario)).build();
+			return Response.status(200).entity(tm.RFC7(usuario)).build();
 			
 		}catch (Exception e) {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
 	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("RFC8/{operador: \\d+}")
+	public Response RFC8(@PathParam("operador") Long operador) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			return Response.status(200).entity(tm.RFC8(operador)).build();
+			
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
 	
 
 
