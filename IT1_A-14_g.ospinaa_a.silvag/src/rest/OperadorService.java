@@ -28,6 +28,7 @@ import vos.Hotel;
 import vos.Operador;
 import vos.PersonaNatural;
 import vos.RFC4;
+import vos.RFC3;
 import vos.Reserva;
 import vos.Vivienda;
 import vos.ViviendaUni;
@@ -227,6 +228,19 @@ public class OperadorService {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
 			List<RFC4> rff4s = tm.RFC4(mapa);
+			return Response.status(200).entity(rff4s).build();
+			
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	@GET
+	@Path("RFC3")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response RFC3() {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			List<RFC3> rff4s = tm.RFC3();
 			return Response.status(200).entity(rff4s).build();
 			
 		}catch (Exception e) {

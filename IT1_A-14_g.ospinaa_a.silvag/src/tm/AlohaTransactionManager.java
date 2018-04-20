@@ -739,6 +739,43 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
+		public List<RFC3> RFC3() throws Exception{
+			ArrayList<RFC3> respu = new ArrayList<>();
+			DAOOperador daoReserva = new DAOOperador();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC3();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+		
 		/**
 		 * RFC2
 		 * @return lista con 20 ofertas mas solicitadas.
