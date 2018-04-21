@@ -572,6 +572,44 @@ public class AlohaTransactionManager {
 			
 		}
 
+		public List<RFC5> RFC5() throws Exception {
+			ArrayList<RFC5> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC5();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
+		}
+		
 		public List<RFC6> RFC6(Long usuario) throws Exception {
 			ArrayList<RFC6> respu = new ArrayList<>();
 			DAOReserva daoReserva = new DAOReserva();
