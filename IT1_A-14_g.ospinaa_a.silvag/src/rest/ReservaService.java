@@ -282,6 +282,22 @@ System.out.println("Entro al get");
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
+	@Path("RFC5")
+	public Response RFC5() {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+
+			List<RFC5> reservas;
+			reservas = tm.RFC5();
+			return Response.status(200).entity(reservas).build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
 	@Path("RFC6/{usuario: \\d+}")
 	public Response RFC6(@PathParam("usuario") Long usuario) {
 		try {

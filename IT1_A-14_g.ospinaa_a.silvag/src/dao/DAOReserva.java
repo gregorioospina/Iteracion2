@@ -202,6 +202,33 @@ public class DAOReserva {
 		return respu;
 	}
 
+	public ArrayList<RFC5> RFC5() throws SQLException
+	{
+		ArrayList<RFC5> respu = new ArrayList<>();
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT us.tipo AS tipo, SUM(re.precio) AS ganancia_total, SUM(fecha_final - fecha_inicial) AS dias_totales");
+		sql.append(String.format(" FROM %1$s.reservas re RIGHT OUTER JOIN %1$s.usuarios us", USUARIO));
+		sql.append(" ON re.codigouniandino = us.codigo");
+		sql.append(" GROUP BY us.tipo");
+		
+		System.out.println(sql);
+
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+
+		while(rs.next())
+		{
+			respu.add(ConvertResultToRFC5(rs));
+		}
+		
+		return respu;
+		
+	}
+	
+	
+	
 	
 	public ArrayList<RFC6> RFC6 (Long codigo) throws SQLException, Exception{
 		ArrayList<RFC6> respu = new ArrayList<>();
@@ -233,6 +260,57 @@ public class DAOReserva {
 	
 	
 	
+	public String RFC7(Long codigo) throws SQLException, Exception
+	{
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
+		sql.append(String.format(" FROM %s.reservas re",USUARIO));
+		sql.append(String.format(" WHERE id_operador = %d", codigo));
+		sql.append(" ORDER BY re.FECHA_FINAL");
+	
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC7> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC7(rs));
+		}
+		
+		return megaRFC7(respu);
+		
+	}
+
+	public ArrayList<RFC8> RFC8(Long operador) throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT us.codigo, us.correo, us.nombre");
+		sql.append(String.format(" FROM %1$s.usuarios us INNER JOIN %1$s.reservas re",USUARIO));
+		sql.append(" ON us.codigo = re.codigouniandino");
+		sql.append(" HAVING COUNT(us.codigo) > 3 OR SUM(fecha_final-fecha_inicial) > 15");
+		sql.append(" GROUP BY us.codigo, us.correo, us.nombre");
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC8> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC8(rs));
+		}
+		
+		return respu;
+		
+	}
+
 	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a
 	 * partir del parametro ingresado<br/>
@@ -358,58 +436,20 @@ public class DAOReserva {
 	}
 	
 
-	public ArrayList<RFC8> RFC8(Long operador) throws SQLException
+	private Long aDia (Date date)
 	{
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT us.codigo, us.correo, us.nombre");
-		sql.append(String.format(" FROM %1$s.usuarios us INNER JOIN %1$s.reservas re",USUARIO));
-		sql.append(" ON us.codigo = re.codigouniandino");
-		sql.append(" HAVING COUNT(us.codigo) > 3 OR SUM(fecha_final-fecha_inicial) > 15");
-		sql.append(" GROUP BY us.codigo, us.correo, us.nombre");
-		
-		System.out.println(sql);
-		
-		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepstmt);
-		ResultSet rs = prepstmt.executeQuery();	
-		
-		ArrayList<RFC8> respu = new ArrayList<>();
-		while(rs.next())
-		{
-			respu.add(convertResultToRFC8(rs));
-		}
+		Long t = date.getTime();
+		Long respu = t/(1000*60*60*24);
 		
 		return respu;
-		
 	}
-	
 
-	public String RFC7(Long codigo) throws SQLException, Exception
-	{
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT re.id_reserva as reserva, re.fecha_final as fecha, re.precio as precio");
-		sql.append(String.format(" FROM %s.reservas re",USUARIO));
-		sql.append(String.format(" WHERE id_operador = %d", codigo));
-		sql.append(" ORDER BY re.FECHA_FINAL");
 
-		
-		System.out.println(sql);
-		
-		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
-		recursos.add(prepstmt);
-		ResultSet rs = prepstmt.executeQuery();	
-		
-		ArrayList<RFC7> respu = new ArrayList<>();
-		while(rs.next())
-		{
-			respu.add(convertResultToRFC7(rs));
-		}
-		
-		return megaRFC7(respu);
-		
-	}
 	
+	////////////////////////////////
+	////// METODOS AUXILIARES////////
+	////////////////////////////////
+
 	private String megaRFC7(ArrayList<RFC7> rs) throws SQLException
 	{
 		Date fechaMenor = new Date();
@@ -424,7 +464,7 @@ public class DAOReserva {
 		Double precio = 0.0;
 		
 		System.out.println("bien2");
-
+	
 		for(int i = 0; i < rs.size(); i++)
 		{
 			int tiempos = 0;
@@ -456,7 +496,7 @@ public class DAOReserva {
 			System.out.println("bien5");
 			fechaBase = rs.get(i).getFecha();
 			System.out.println("bien6");
-
+	
 			
 		}
 		StringBuilder respu = new StringBuilder();
@@ -467,20 +507,6 @@ public class DAOReserva {
 		return respu.toString();
 				
 	}
-	
-	private Long aDia (Date date)
-	{
-		Long t = date.getTime();
-		Long respu = t/(1000*60*60*24);
-		
-		return respu;
-	}
-
-
-	
-	////////////////////////////////
-	////// METODOS AUXILIARES////////
-	////////////////////////////////
 
 	public Reserva convertResultToReserva(ResultSet resultSet) throws SQLException {
 		System.out.println("convertResultSetToReserva");
@@ -503,6 +529,28 @@ public class DAOReserva {
 		return reserva;
 	}
 	
+	public RFC1 convertResultToRFC1(ResultSet resultSet) throws SQLException{
+		String nombre = resultSet.getString("NOMBRE");
+		Integer ganancia = resultSet.getInt("GANANCIA_ANUAL");
+		Integer operador = resultSet.getInt("ID_OPERADOR");
+		return new RFC1(nombre,operador,ganancia);
+	}
+
+	public RFC2 convertResultToRFC2(ResultSet resultSet) throws SQLException{
+		Integer habitacion = resultSet.getInt("ID_HABITACION");
+		Integer operador = resultSet.getInt("ID_OPERADOR");
+		return new RFC2(operador, habitacion);
+	}
+	
+	public RFC5 ConvertResultToRFC5(ResultSet rs) throws SQLException
+	{
+		String tipo = rs.getString("TIPO");
+		Double ganancia = rs.getDouble("GANANCIA_TOTAL");
+		Integer dias = rs.getInt("DIAS_TOTALES");
+		
+		return new RFC5(tipo, dias, ganancia);
+	}
+
 	public RFC6 convertResultToRFC6(ResultSet resultSet) throws SQLException
 	{
 		Long codigouniandes = resultSet.getLong("CODIGO");
@@ -510,17 +558,10 @@ public class DAOReserva {
 		String tipooperador = resultSet.getString("TIPO_OPERADOR");
 		String tipohabitacion = resultSet.getString("TIPO_HABITACION");
 		Double pagado = resultSet.getDouble("PAGADO");
-
+	
 		return new RFC6(codigouniandes, diasalquilados, tipooperador, tipohabitacion, pagado);
-
-	}
 	
-	public RFC2 convertResultToRFC2(ResultSet resultSet) throws SQLException{
-		Integer habitacion = resultSet.getInt("ID_HABITACION");
-		Integer operador = resultSet.getInt("ID_OPERADOR");
-		return new RFC2(operador, habitacion);
 	}
-	
 
 	public RFC7 convertResultToRFC7(ResultSet rs) throws SQLException
 	{
@@ -544,14 +585,6 @@ public class DAOReserva {
 	public Long convertResultToRF8(ResultSet resultSet)throws SQLException{
 		return resultSet.getLong("ID_RESERVA");
 	}
-	
-	public RFC1 convertResultToRFC1(ResultSet resultSet) throws SQLException{
-		String nombre = resultSet.getString("NOMBRE");
-		Integer ganancia = resultSet.getInt("GANANCIA_ANUAL");
-		Integer operador = resultSet.getInt("ID_OPERADOR");
-		return new RFC1(nombre,operador,ganancia);
-	}
-	
 
 	private char boolToInt(Boolean bol) {
 		return bol ? '1' : '0';
