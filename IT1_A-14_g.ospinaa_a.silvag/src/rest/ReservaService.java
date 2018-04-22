@@ -307,7 +307,7 @@ System.out.println("Entro al get");
 			tm.RF7(mapa);
 			System.out.println(2);
 
-			return Response.status(200).entity("").build();
+			return Response.status(200).entity("Existoso").build();
 			
 			
 		}catch (Exception e) {
