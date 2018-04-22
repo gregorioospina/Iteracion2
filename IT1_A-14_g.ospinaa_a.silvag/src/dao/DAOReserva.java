@@ -394,11 +394,12 @@ public class DAOReserva {
 	
 	public void rf9(Long id) throws Exception{
 		String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
-		
+		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		recursos.add(prepStmt);
 		sql = String.format("SELECT *\r\n" + 
 				"FROM Reservas \r\n" + 
 				"where ID_OPERADOR = %d AND FECHA_INICIAL>CURRENT_DATE AND CANCELADO = '0'" , id);
-		PreparedStatement prepStmt = conn.prepareStatement(sql);
+		prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		ResultSet rs = prepStmt.executeQuery();
 		while (rs.next()) {
