@@ -393,7 +393,7 @@ public class DAOReserva {
 	}
 	
 	public void rf9(Long id) throws Exception{
-		String sql = String.format("UPDATE OPERADORES SET HABILITADO = '1' WHERE %d", id);
+		String sql = String.format("UPDATE OPERADORES SET HABILITADO = '0' WHERE %d", id);
 		PreparedStatement prepStmt = conn.prepareStatement(sql);
 		recursos.add(prepStmt);
 		sql = String.format("SELECT *\r\n" + 

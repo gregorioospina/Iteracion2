@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import vos.*;
 import java.util.Date;
+import java.util.Iterator;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -853,6 +854,35 @@ public void RF10(Long id)throws SQLException{
 	prepstmt.executeQuery();
 }
 
+public ArrayList<Usuario> RFC10(RFC10 rfc10) throws SQLException{
+	ArrayList<Usuario> devolver = new ArrayList<>();
+	String sql = String.format("SELECT us.* FROM %1$s.USUARIOS us, %1$s.RESERVAS re WHERE re.ID_OPERADOR = %2$d AND re.CODIGO_UNIANDINO=us.CODIGO AND TO_DATE('%3$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%4$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
+			USUARIO, 
+			rfc10.getOperador(), 
+			rfc10.getFechaInicio(), 
+			rfc10.getFechaFinal());
+	Iterator<String> it1 = rfc10.getGrupos().iterator();
+	if(it1.hasNext()) {
+		sql += " GROUP BY " + it1.next();
+	}
+	while(it1.hasNext()) {
+		sql+=", " + it1.next();
+	}
+	it1=rfc10.getOrden().iterator();
+	if(it1.hasNext()) {
+		sql += " ORDER BY " + it1.next();
+	}
+	while(it1.hasNext()) {
+		sql+=", " + it1.next();
+	}
+	
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	prepstmt.executeQuery();
+	
+	return devolver;
+}
+
 public boolean buscar(ArrayList<String> lista, String s1) {
 	for(String s:lista) {
 		if (s.equalsIgnoreCase(s1)){
@@ -871,5 +901,16 @@ public RFC3 convertResultToRFC3(ResultSet resultSet) throws SQLException{
 public RFC4 convertResultToRFC4(ResultSet resultSet) throws SQLException{
 	Integer id = resultSet.getInt("ID_OPERADOR");
 	return new RFC4(id);
+}
+
+public Usuario convertResultToUsuario(ResultSet resultSet) throws SQLException {
+	Long codigo = resultSet.getLong("CODIGO");
+	String nombre = resultSet.getString("NOMBRE");
+	String correo = resultSet.getString("CORREO");
+	String tipo = resultSet.getString("TIPO");
+
+	Usuario usuario = new Usuario(codigo, nombre, correo, tipo);
+
+	return usuario;
 }
 }

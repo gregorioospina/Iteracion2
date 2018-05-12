@@ -29,7 +29,9 @@ import vos.Operador;
 import vos.PersonaNatural;
 import vos.RFC4;
 import vos.RFC3;
+import vos.RFC10;
 import vos.Reserva;
+import vos.Usuario;
 import vos.Vivienda;
 import vos.ViviendaUni;
 
@@ -236,6 +238,22 @@ public class OperadorService {
 			return Response.status(500).entity(doErrorMessage(e)).build();
 		}
 	}
+	
+	@PUT
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("RFC10")
+	public Response RFC10(RFC10 rfc10) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			List<Usuario> rff4s = tm.RFC10(rfc10);
+			return Response.status(200).entity(rff4s).build();
+			
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
 
 	@GET
 	@Path("RF10/{id: \\d+}")
