@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class RFC10 {
+public class RFC10_11 {
 
 
 	
@@ -23,7 +23,7 @@ public class RFC10 {
 	
 	
 
-	public RFC10( 
+	public RFC10_11( 
 			@JsonProperty(value = "fechaInicio") String fechaInicio, 
 			@JsonProperty(value = "fechaFinal") String fechaFinal, 
 			@JsonProperty(value = "ordenamientos")ArrayList<String> orden,

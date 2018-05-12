@@ -860,9 +860,9 @@ public void RF10(Long id)throws SQLException{
  * @return
  * @throws SQLException
  */
-public ArrayList<Usuario> RFC10(RFC10 rfc10) throws SQLException{
+public ArrayList<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 	ArrayList<Usuario> devolver = new ArrayList<>();
-	String sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS, %1$s.OPERADORES op re WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
+	String sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
 			USUARIO, 
 			rfc10.getFechaInicio(), 
 			rfc10.getFechaFinal());
@@ -889,6 +889,39 @@ public ArrayList<Usuario> RFC10(RFC10 rfc10) throws SQLException{
 		devolver.add(convertResultToUsuario(rs));
 	}
 	
+	return devolver;
+}
+
+public ArrayList<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
+	ArrayList<Usuario> devolver = new ArrayList<>();
+	String sql = String.format("SELECT * FROM( SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us MINUS " + 
+			USUARIO);
+	sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS, %1$s.OPERADORES op re WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL)",
+			USUARIO, 
+			rfc11.getFechaInicio(),
+			rfc11.getFechaFinal());
+	Iterator<String> it1 = rfc11.getGrupos().iterator();
+	if(it1.hasNext()) {
+		sql += " GROUP BY " + it1.next();
+	}
+	while(it1.hasNext()) {
+		sql+=", " + it1.next();
+	}
+	it1=rfc11.getOrden().iterator();
+	if(it1.hasNext()) {
+		sql += " ORDER BY " + it1.next();
+	}
+	while(it1.hasNext()) {
+		sql+=", " + it1.next();
+	}
+	
+	PreparedStatement prepstmt = conn.prepareStatement(sql);
+	recursos.add(prepstmt);
+	ResultSet rs = prepstmt.executeQuery();
+	
+	while(rs.next()) {
+		devolver.add(convertResultToUsuario(rs));
+	}
 	return devolver;
 }
 

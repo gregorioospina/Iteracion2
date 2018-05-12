@@ -1012,7 +1012,7 @@ public class AlohaTransactionManager {
 			}	
 		}
 		
-		public List<Usuario> RFC10(RFC10 rfc10) throws SQLException{
+		public List<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 			ArrayList<Usuario> respu = new ArrayList<>();
 			DAOOperador daoOperador = new DAOOperador();
 			
@@ -1021,6 +1021,44 @@ public class AlohaTransactionManager {
 				this.conn = darConexion();
 				daoOperador.setConn(conn);
 				respu = daoOperador.RFC10(rfc10);
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+		
+		
+		public List<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
+			ArrayList<Usuario> respu = new ArrayList<>();
+			DAOOperador daoOperador = new DAOOperador();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				respu = daoOperador.RFC11(rfc11);
 			}
 			
 			catch (SQLException sqlException) {
