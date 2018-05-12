@@ -856,9 +856,8 @@ public void RF10(Long id)throws SQLException{
 
 public ArrayList<Usuario> RFC10(RFC10 rfc10) throws SQLException{
 	ArrayList<Usuario> devolver = new ArrayList<>();
-	String sql = String.format("SELECT us.* FROM %1$s.USUARIOS us, %1$s.RESERVAS re WHERE re.ID_OPERADOR = %2$d AND re.CODIGO_UNIANDINO=us.CODIGO AND TO_DATE('%3$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%4$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
+	String sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS, %1$s.OPERADORES op re WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
 			USUARIO, 
-			rfc10.getOperador(), 
 			rfc10.getFechaInicio(), 
 			rfc10.getFechaFinal());
 	Iterator<String> it1 = rfc10.getGrupos().iterator();

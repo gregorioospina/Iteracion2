@@ -7,8 +7,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 public class RFC10 {
 
-	@JsonProperty(value = "idOperador")
-	private Long operador;
+
 	
 	@JsonProperty(value = "fechaInicio")
 	private String fechaInicio;
@@ -24,30 +23,16 @@ public class RFC10 {
 	
 	
 
-	public RFC10(@JsonProperty(value = "idOperador") Long operador, 
+	public RFC10( 
 			@JsonProperty(value = "fechaInicio") String fechaInicio, 
 			@JsonProperty(value = "fechaFinal") String fechaFinal, 
 			@JsonProperty(value = "ordenamientos")ArrayList<String> orden,
 			@JsonProperty(value = "agrupamientos")ArrayList<String> grupos) {
-		this.operador = operador;
+		
 		this.fechaInicio = fechaInicio;
 		this.fechaFinal = fechaFinal;
 		this.orden = orden;
 		this.grupos = grupos;
-	}
-
-	/**
-	 * @return the operador
-	 */
-	public Long getOperador() {
-		return operador;
-	}
-
-	/**
-	 * @param operador the operador to set
-	 */
-	public void setOperador(Long operador) {
-		this.operador = operador;
 	}
 
 	/**
