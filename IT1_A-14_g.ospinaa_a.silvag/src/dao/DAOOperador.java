@@ -877,7 +877,11 @@ public ArrayList<Usuario> RFC10(RFC10 rfc10) throws SQLException{
 	
 	PreparedStatement prepstmt = conn.prepareStatement(sql);
 	recursos.add(prepstmt);
-	prepstmt.executeQuery();
+	ResultSet rs = prepstmt.executeQuery();
+	
+	while(rs.next()) {
+		devolver.add(convertResultToUsuario(rs));
+	}
 	
 	return devolver;
 }
