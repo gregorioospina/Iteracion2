@@ -925,6 +925,7 @@ public ArrayList<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
 	return devolver;
 }
 
+
 public boolean buscar(ArrayList<String> lista, String s1) {
 	for(String s:lista) {
 		if (s.equalsIgnoreCase(s1)){
