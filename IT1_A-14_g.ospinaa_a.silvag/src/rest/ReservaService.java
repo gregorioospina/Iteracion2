@@ -385,6 +385,36 @@ System.out.println("Entro al get");
 		}
 	}
 	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("RFC12")
+	public Response RFC12()
+	{
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			return Response.status(200).entity(tm.RFC12()).build();
+			
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("RFC13")
+	public Response RFC13()
+	{
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			return Response.status(200).entity(tm.RFC13()).build();
+			
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
 
 
 	

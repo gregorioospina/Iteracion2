@@ -1086,6 +1086,84 @@ public class AlohaTransactionManager {
 			}
 			return respu;
 		}
+		
+		public String RFC12() throws SQLException
+		{
+			String respu = "";
+			DAOReserva daoReserva = new DAOReserva();
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC12();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
+		}
+		
+		public String RFC13() throws SQLException
+		{
+			String respu = "";
+			DAOReserva daoReserva = new DAOReserva();
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC13();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+			
+			
+		}
 
 		/**
 		 * Metodo que modela la transaccion que agrega un reserva a la base de datos. <br/>

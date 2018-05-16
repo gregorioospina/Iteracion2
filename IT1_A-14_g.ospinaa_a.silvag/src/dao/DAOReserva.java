@@ -310,6 +310,226 @@ public class DAOReserva {
 		return respu;
 		
 	}
+	
+	public List<RFC12_1> RFC12_1MAX() throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" WITH consulta1 as (SELECT MAX(cuenta) maxim,  semana");
+		sql.append(" from( SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
+		sql.append(String.format(" from %1$d.reservas", USUARIO));
+		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
+		sql.append(" GROUP BY semana),");
+		sql.append(" consulta2 as (");
+		sql.append(" SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
+		sql.append(" from reservas");
+		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
+		sql.append(" SELECT consulta1.semana, consulta2.id_operador , consulta1.maxim solicitado");
+		sql.append(" FROM consulta1, consulta2");
+		sql.append(" WHERE consulta1.maxim = consulta2.cuenta and");
+		sql.append(" consulta1.semana=consulta2.semana");
+		sql.append(" ORDER BY SEMANA desc;");
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC12_1> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC12_1(rs));
+		}
+		
+		return respu;
+
+	}
+	
+	public List<RFC12_1> RFC12_1MIN() throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" WITH consulta1 as (SELECT MIN(cuenta) maxim,  semana");
+		sql.append(" from( SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
+		sql.append(String.format(" from %1$d.reservas", USUARIO));
+		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
+		sql.append(" GROUP BY semana),");
+		sql.append(" consulta2 as (");
+		sql.append(" SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
+		sql.append(" from reservas");
+		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
+		sql.append(" SELECT consulta1.semana, consulta2.id_operador , consulta1.maxim solicitado");
+		sql.append(" FROM consulta1, consulta2");
+		sql.append(" WHERE consulta1.maxim = consulta2.cuenta and");
+		sql.append(" consulta1.semana=consulta2.semana");
+		sql.append(" ORDER BY SEMANA desc;");
+		
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC12_1> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC12_1(rs));
+		}
+		
+		return respu;
+
+	}
+	
+	public List<RFC12_2> RFC12_2MAX() throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" WITH consulta5 AS (SELECT semana, MAX(cuenta) maxo");
+		sql.append(" FROM(SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta");
+		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
+		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
+		sql.append(" ORDER BY semana DESC)");
+		sql.append(" GROUP BY semana),");
+		sql.append(" consulta6 AS (");
+		sql.append(" SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador op, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta ");
+		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
+		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
+		sql.append(" ORDER BY semana DESC)");
+		sql.append(" SELECT consulta5.semana, consulta5.maxo ocupacion, consulta6.op id_operador");
+		sql.append(" FROM consulta5, consulta6");
+		sql.append(" WHERE consulta5.maxo = consulta6.cuenta");
+		sql.append(" AND consulta5.semana = consulta6.semana");
+		sql.append(" ORDER BY semana DESC;");
+
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC12_2> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC12_2(rs));
+		}
+		
+		return respu;
+
+	}
+	
+	public String RFC12() throws SQLException
+	{
+		List<RFC12_1> maxSolicitados = RFC12_1MAX();
+		List<RFC12_1> minSolicitados = RFC12_1MIN();
+		List<RFC12_2> maxOcupacion 	 = RFC12_2MAX();
+		List<RFC12_2> minOcupacion	 = RFC12_2MIN();
+		
+		StringBuilder respu = new StringBuilder();
+		
+		for (int i = 0 ; i<maxOcupacion.size(); i++)
+		{
+			RFC12_1 max = maxSolicitados.get(i);
+			RFC12_1 min = minSolicitados.get(i);
+			RFC12_2 minx = minOcupacion.get(i);
+			RFC12_2 maxx = maxOcupacion.get(i);
+			
+			respu.append("Para la semana " + max.getSemana() + ":" );
+			respu.append("El operador con mayor ocupacion fue: " + maxx.getId_operador());
+			respu.append("El operador con menor ocupacion fue: " + minx.getId_operador());
+			respu.append("El operador con mayor solicitudes fue: " + max.getId_operador());
+			respu.append("El operador con menor solicitudes fue: " + min.getId_operador());
+			respu.append("----------------------------------------------");
+
+
+		}
+		
+		return respu.toString();
+	}
+	
+	public List<RFC12_2> RFC12_2MIN() throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" WITH consulta5 AS (SELECT semana, MIN(cuenta) maxo");
+		sql.append(" FROM(SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta");
+		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
+		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
+		sql.append(" ORDER BY semana DESC)");
+		sql.append(" GROUP BY semana),");
+		sql.append(" consulta6 AS (");
+		sql.append(" SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador op, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta ");
+		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
+		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
+		sql.append(" ORDER BY semana DESC)");
+		sql.append(" SELECT consulta5.semana, consulta5.maxo ocupacion, consulta6.op id_operador");
+		sql.append(" FROM consulta5, consulta6");
+		sql.append(" WHERE consulta5.maxo = consulta6.cuenta");
+		sql.append(" AND consulta5.semana = consulta6.semana");
+		sql.append(" ORDER BY semana DESC;");
+
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC12_2> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC12_2(rs));
+		}
+		
+		return respu;
+
+	}
+	
+	public String RFC13() throws SQLException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" WITH cs AS");
+		sql.append(String.format(" SELECT reservas.codigouniandino as codigo, habitacion.tipo as hab", USUARIO));
+		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
+		sql.append(" WHERE habitacion.tipo = 'suite' and reservas.codigouniandino is not null");
+		sql.append(" MINUS");
+		sql.append(" SELECT reservas.codigouniandino as codigo, habitacion.tipo");
+		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
+		sql.append(" WHERE habitacion.tipo NOT LIKE 'suite' and reservas.codigouniandino is not null),");
+		sql.append(" caros AS");
+		sql.append(" (SELECT reservas.codigouniandino AS codigo, AVG(habitacion.precio) AS precio_promedio");
+		sql.append(String.format(" FROM reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
+		sql.append(" WHERE habitacion.precio > 450000 AND reservas.codigouniandino IS NOT NULL");
+		sql.append(" GROUP BY reservas.codigouniandino");
+		sql.append(" MINUS");
+		sql.append(" SELECT reservas.codigouniandino AS codigo, AVG(habitacion.precio) AS precio_promedio");
+		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
+		sql.append(" WHERE habitacion.precio < 450000 AND reservas.codigouniandino IS NOT NULL");
+		sql.append(" GROUP BY reservas.codigouniandino),");
+		sql.append(" mensual AS(SELECT reservas.codigouniandino AS codigo");
+		sql.append(String.format(" FROM %1$d.reservas", USUARIO));
+		sql.append(" GROUP BY substr(reservas.fecha_inicial, 4,3), reservas.codigouniandino");
+		sql.append(" HAVING (COUNT(DISTINCT substr(reservas.fecha_inicial, 4,3))> COUNT(reservas.codigouniandino)))");
+		sql.append(" SELECT DISTINCT reservas.codigouniandino codigouniandino, usuarios.nombre, cs.hab, caros.precio_promedio");
+		sql.append(" FROM reservas INNER JOIN usuarios ON reservas.codigouniandino = usuarios.codigo LEFT JOIN caros ON reservas.codigouniandino = caros.codigo LEFT JOIN mensual ON reservas.codigouniandino = mensual.codigo LEFT JOIN cs ON reservas.codigouniandino = cs.codigo");
+		System.out.println(sql);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sql.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();	
+		
+		ArrayList<RFC13> respu = new ArrayList<>();
+		while(rs.next())
+		{
+			respu.add(convertResultToRFC13(rs));
+		}
+		
+		return megaRFC13(respu);
+	}
+	
 
 	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de Datos a
@@ -494,10 +714,7 @@ public class DAOReserva {
 				fechaPrecio = fechaBase;
 			}
 			
-			System.out.println("bien5");
-			fechaBase = rs.get(i).getFecha();
-			System.out.println("bien6");
-	
+			fechaBase = rs.get(i).getFecha();	
 			
 		}
 		StringBuilder respu = new StringBuilder();
@@ -583,10 +800,65 @@ public class DAOReserva {
 	}
 	
 	
-	public Long convertResultToRF8(ResultSet resultSet)throws SQLException{
+	public Long convertResultToRF8(ResultSet resultSet)throws SQLException
+	{
 		return resultSet.getLong("ID_RESERVA");
 	}
+	
+	public RFC12_1 convertResultToRFC12_1(ResultSet rs) throws SQLException
+	{
+		Integer semana = rs.getInt("SEMANA");
+		Long id_operador = rs.getLong("ID_OPERADOR");
+		Integer solicitado = rs.getInt("SOLICITADO");
+		
+		return new RFC12_1(semana, id_operador, solicitado);
+	}
+	
+	public RFC12_2 convertResultToRFC12_2(ResultSet rs) throws SQLException
+	{
+		Integer semana = rs.getInt("SEMANA");
+		Long id_operador = rs.getLong("ID_OPERADOR");
+		Integer ocupacion = rs.getInt("OCUPACION");
+		
+		return new RFC12_2(semana, id_operador, ocupacion);
+	}
 
+
+	public vos.RFC13 convertResultToRFC13(ResultSet rs) throws SQLException
+	{
+		Long codigouniandino = rs.getLong("CODIGOUNIANDINO");
+		String nombre = rs.getString("NOMBRE");
+		String hab = rs.getString("HAB");
+		Double precio_promedio = rs.getDouble("PRECIO_PROMEDIO");
+		
+		return new RFC13(codigouniandino, nombre, hab, precio_promedio);
+	}
+	
+	public String megaRFC13(List<RFC13> lista)
+	{
+		int cont = 0;
+		StringBuilder respu = new StringBuilder();
+		for (int i=0; i<lista.size(); i++)
+		{
+			RFC13 x = lista.get(i);
+			if(x.getHab() == null && x.getPrecio_promedio() == null && cont < 40 )
+			{
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo multiples reservas ");
+				cont++;
+			}
+			else if( x.getHab() == null && x.getPrecio_promedio() != null)
+			{
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo precio exclusivo ");
+			}
+			else if(x.getHab() != null && x.getPrecio_promedio() == null)
+			{
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo suite ");
+			}
+		}
+		
+		return respu.toString();
+	}
+	
 	private char boolToInt(Boolean bol) {
 		return bol ? '1' : '0';
 	}
