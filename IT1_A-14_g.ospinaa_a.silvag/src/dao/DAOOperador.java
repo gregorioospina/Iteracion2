@@ -862,7 +862,7 @@ public void RF10(Long id)throws SQLException{
  */
 public ArrayList<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 	ArrayList<Usuario> devolver = new ArrayList<>();
-	String sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
+	String sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGOUNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL", 
 			USUARIO, 
 			rfc10.getFechaInicio(), 
 			rfc10.getFechaFinal());
@@ -880,6 +880,7 @@ public ArrayList<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 	while(it1.hasNext()) {
 		sql+=", " + it1.next();
 	}
+	System.out.println(sql);
 	
 	PreparedStatement prepstmt = conn.prepareStatement(sql);
 	recursos.add(prepstmt);
@@ -894,9 +895,10 @@ public ArrayList<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 
 public ArrayList<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
 	ArrayList<Usuario> devolver = new ArrayList<>();
-	String sql = String.format("SELECT * FROM( SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us MINUS " + 
+	String sql ="SELECT * FROM(";
+	sql += String.format("SELECT * FROM( SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us) MINUS " ,
 			USUARIO);
-	sql = String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO, op.CUPO, op.CORREO mail, op.NOMBRE name, op.TIPO type, op.ID_OPERADOR, op.OCUPACION, op.HABILITADO FROM %1$s.USUARIOS us, %1$s.RESERVAS, %1$s.OPERADORES op re WHERE re.CODIGO_UNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL)",
+	sql += String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGOUNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL)",
 			USUARIO, 
 			rfc11.getFechaInicio(),
 			rfc11.getFechaFinal());
@@ -914,7 +916,7 @@ public ArrayList<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
 	while(it1.hasNext()) {
 		sql+=", " + it1.next();
 	}
-	
+	System.out.println(sql);
 	PreparedStatement prepstmt = conn.prepareStatement(sql);
 	recursos.add(prepstmt);
 	ResultSet rs = prepstmt.executeQuery();
