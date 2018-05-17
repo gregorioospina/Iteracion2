@@ -316,7 +316,7 @@ public class DAOReserva {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" WITH consulta1 as (SELECT MAX(cuenta) maxim,  semana");
 		sql.append(" from( SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
-		sql.append(String.format(" from %1$d.reservas", USUARIO));
+		sql.append(String.format(" from %s.reservas", USUARIO));
 		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
 		sql.append(" GROUP BY semana),");
 		sql.append(" consulta2 as (");
@@ -327,7 +327,7 @@ public class DAOReserva {
 		sql.append(" FROM consulta1, consulta2");
 		sql.append(" WHERE consulta1.maxim = consulta2.cuenta and");
 		sql.append(" consulta1.semana=consulta2.semana");
-		sql.append(" ORDER BY SEMANA desc;");
+		sql.append(" ORDER BY SEMANA desc");
 		
 		System.out.println(sql);
 		
@@ -350,7 +350,7 @@ public class DAOReserva {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" WITH consulta1 as (SELECT MIN(cuenta) maxim,  semana");
 		sql.append(" from( SELECT count(ID_OPERADOR) cuenta, ID_OPERADOR, to_char(FECHA_INICIAL - 7/24, 'IW') semana");
-		sql.append(String.format(" from %1$d.reservas", USUARIO));
+		sql.append(String.format(" from %1$s.reservas", USUARIO));
 		sql.append(" group by  to_char(FECHA_INICIAL - 7/24, 'IW'), ID_OPERADOR)");
 		sql.append(" GROUP BY semana),");
 		sql.append(" consulta2 as (");
@@ -361,7 +361,7 @@ public class DAOReserva {
 		sql.append(" FROM consulta1, consulta2");
 		sql.append(" WHERE consulta1.maxim = consulta2.cuenta and");
 		sql.append(" consulta1.semana=consulta2.semana");
-		sql.append(" ORDER BY SEMANA desc;");
+		sql.append(" ORDER BY SEMANA desc");
 		
 		System.out.println(sql);
 		
@@ -384,14 +384,14 @@ public class DAOReserva {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" WITH consulta5 AS (SELECT semana, MAX(cuenta) maxo");
 		sql.append(" FROM(SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta");
-		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas, %1$s.operadores", USUARIO));
 		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
 		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
 		sql.append(" ORDER BY semana DESC)");
 		sql.append(" GROUP BY semana),");
 		sql.append(" consulta6 AS (");
 		sql.append(" SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador op, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta ");
-		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas, %1$s.operadores", USUARIO));
 		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
 		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
 		sql.append(" ORDER BY semana DESC)");
@@ -399,7 +399,7 @@ public class DAOReserva {
 		sql.append(" FROM consulta5, consulta6");
 		sql.append(" WHERE consulta5.maxo = consulta6.cuenta");
 		sql.append(" AND consulta5.semana = consulta6.semana");
-		sql.append(" ORDER BY semana DESC;");
+		sql.append(" ORDER BY semana DESC");
 
 		System.out.println(sql);
 		
@@ -433,12 +433,12 @@ public class DAOReserva {
 			RFC12_2 minx = minOcupacion.get(i);
 			RFC12_2 maxx = maxOcupacion.get(i);
 			
-			respu.append("Para la semana " + max.getSemana() + ":" );
-			respu.append("El operador con mayor ocupacion fue: " + maxx.getId_operador());
-			respu.append("El operador con menor ocupacion fue: " + minx.getId_operador());
-			respu.append("El operador con mayor solicitudes fue: " + max.getId_operador());
-			respu.append("El operador con menor solicitudes fue: " + min.getId_operador());
-			respu.append("----------------------------------------------");
+			respu.append("Para la semana " + max.getSemana() + ":"  + "\n");
+			respu.append("El operador con mayor ocupacion fue: " + maxx.getId_operador() + "\n");
+			respu.append("El operador con menor ocupacion fue: " + minx.getId_operador() + "\n");
+			respu.append("El operador con mayor solicitudes fue: " + max.getId_operador() + "\n");
+			respu.append("El operador con menor solicitudes fue: " + min.getId_operador() + "\n");
+			respu.append("----------------------------------------------" + "\n");
 
 
 		}
@@ -451,14 +451,14 @@ public class DAOReserva {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" WITH consulta5 AS (SELECT semana, MIN(cuenta) maxo");
 		sql.append(" FROM(SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta");
-		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas, %1$s.operadores", USUARIO));
 		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
 		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
 		sql.append(" ORDER BY semana DESC)");
 		sql.append(" GROUP BY semana),");
 		sql.append(" consulta6 AS (");
 		sql.append(" SELECT to_char(fecha_inicial - 7/24, 'IW') semana, reservas.id_operador op, (operadores.ocupacion - COUNT(reservas.id_operador)) cuenta ");
-		sql.append(String.format(" FROM %1$d.reservas, %1$d.operadores", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas, %1$s.operadores", USUARIO));
 		sql.append(" WHERE reservas.id_operador = operadores.id_operador");
 		sql.append(" GROUP BY reservas.id_operador, operadores.ocupacion, to_char(reservas.fecha_inicial - 7/24, 'IW')");
 		sql.append(" ORDER BY semana DESC)");
@@ -466,7 +466,7 @@ public class DAOReserva {
 		sql.append(" FROM consulta5, consulta6");
 		sql.append(" WHERE consulta5.maxo = consulta6.cuenta");
 		sql.append(" AND consulta5.semana = consulta6.semana");
-		sql.append(" ORDER BY semana DESC;");
+		sql.append(" ORDER BY semana DESC");
 
 		System.out.println(sql);
 		
@@ -488,13 +488,13 @@ public class DAOReserva {
 	{
 		StringBuilder sql = new StringBuilder();
 		sql.append(" WITH cs AS");
-		sql.append(String.format(" SELECT reservas.codigouniandino as codigo, habitacion.tipo as hab", USUARIO));
-		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(String.format(" (SELECT reservas.codigouniandino as codigo, habitacion.tipo as hab", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas FULL OUTER JOIN habitacion", USUARIO));
 		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
 		sql.append(" WHERE habitacion.tipo = 'suite' and reservas.codigouniandino is not null");
 		sql.append(" MINUS");
 		sql.append(" SELECT reservas.codigouniandino as codigo, habitacion.tipo");
-		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas FULL OUTER JOIN habitacion", USUARIO));
 		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
 		sql.append(" WHERE habitacion.tipo NOT LIKE 'suite' and reservas.codigouniandino is not null),");
 		sql.append(" caros AS");
@@ -505,12 +505,12 @@ public class DAOReserva {
 		sql.append(" GROUP BY reservas.codigouniandino");
 		sql.append(" MINUS");
 		sql.append(" SELECT reservas.codigouniandino AS codigo, AVG(habitacion.precio) AS precio_promedio");
-		sql.append(String.format(" FROM %1$d.reservas FULL OUTER JOIN habitacion", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas FULL OUTER JOIN habitacion", USUARIO));
 		sql.append(" ON habitacion.id_habitacion = reservas.id_habitacion");
 		sql.append(" WHERE habitacion.precio < 450000 AND reservas.codigouniandino IS NOT NULL");
 		sql.append(" GROUP BY reservas.codigouniandino),");
 		sql.append(" mensual AS(SELECT reservas.codigouniandino AS codigo");
-		sql.append(String.format(" FROM %1$d.reservas", USUARIO));
+		sql.append(String.format(" FROM %1$s.reservas", USUARIO));
 		sql.append(" GROUP BY substr(reservas.fecha_inicial, 4,3), reservas.codigouniandino");
 		sql.append(" HAVING (COUNT(DISTINCT substr(reservas.fecha_inicial, 4,3))> COUNT(reservas.codigouniandino)))");
 		sql.append(" SELECT DISTINCT reservas.codigouniandino codigouniandino, usuarios.nombre, cs.hab, caros.precio_promedio");
@@ -841,18 +841,18 @@ public class DAOReserva {
 		for (int i=0; i<lista.size(); i++)
 		{
 			RFC13 x = lista.get(i);
-			if(x.getHab() == null && x.getPrecio_promedio() == null && cont < 40 )
+			if(x.getHab() == null && x.getPrecio_promedio() == 0.0 && cont < 40 )
 			{
-				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo multiples reservas ");
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo multiples reservas \n");
 				cont++;
 			}
-			else if( x.getHab() == null && x.getPrecio_promedio() != null)
+			else if( x.getHab() == null && x.getPrecio_promedio() != 0.0)
 			{
-				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo precio exclusivo ");
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo precio exclusivo \n");
 			}
-			else if(x.getHab() != null && x.getPrecio_promedio() == null)
+			else if(x.getHab() != null && x.getPrecio_promedio() == 0.0)
 			{
-				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo suite ");
+				respu.append("El cliente con el nombre " + x.getNombre() + " y codigo " +  x.getCodigouniandino() + " es cliente de beneficio tipo suite \n");
 			}
 		}
 		
