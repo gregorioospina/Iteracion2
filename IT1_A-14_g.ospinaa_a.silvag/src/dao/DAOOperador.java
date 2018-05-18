@@ -895,10 +895,10 @@ public ArrayList<Usuario> RFC10(RFC10_11 rfc10) throws SQLException{
 
 public ArrayList<Usuario> RFC11(RFC10_11 rfc11) throws SQLException{
 	ArrayList<Usuario> devolver = new ArrayList<>();
-	String sql ="SELECT * FROM(";
-	sql += String.format("SELECT * FROM( SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us) MINUS " ,
+	String sql ="SELECT /*+ ALL_ROWS */ * FROM(";
+	sql += String.format("SELECT /*+ ALL_ROWS */ * FROM( SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us) MINUS " ,
 			USUARIO);
-	sql += String.format("SELECT us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGOUNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL)",
+	sql += String.format("SELECT /*+ ALL_ROWS */ us.CODIGO, us.NOMBRE, us.CORREO, us.TIPO FROM %1$s.USUARIOS us, %1$s.RESERVAS re, %1$s.OPERADORES op WHERE re.CODIGOUNIANDINO=us.CODIGO AND re.ID_OPERADOR=op.ID_OPERADOR AND TO_DATE('%2$s','YYYY-MM-DD')>=re.FECHA_INICIAL AND TO_DATE('%3$s','YYYY-MM-DD')<=re.FECHA_FINAL)",
 			USUARIO, 
 			rfc11.getFechaInicio(),
 			rfc11.getFechaFinal());
